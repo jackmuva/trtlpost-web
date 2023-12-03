@@ -88,3 +88,6 @@ background: url('http://localhost:8080/waw.png');
 ## For Docker
 1) Run `docker build -t react-docker-aws:latest .` to build project
 2) Run `docker run -e postgres_url=<url> -e ... -p 3000:80 react-docker-aws:latest` to run on port 3000
+
+## For enabling https
+1) Install certificate in your browser as a pfx if not already done
