@@ -1,5 +1,5 @@
-// const apiUrl = "http://trtlmail-rest-java.us-east-1.elasticbeanstalk.com";
-const apiUrl = "https://localhost:5000";
+const apiUrl = "https://54.227.160.149:5000";
+// const apiUrl = "https://localhost:5000";
 export default class StandardApi {
 
     json(response){
