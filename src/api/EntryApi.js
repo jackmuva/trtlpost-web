@@ -14,5 +14,8 @@ class EntryApi extends StandardApi{
     getEntriesBySeriesId(id){
         return this.get(`/api/entry/getBySeries/${id}`).then(response => response.json());
     }
+    getFirstEntryBySeriesId(id){
+        return this.get(`/api/entry/getFirstBySeries/${id}`).then(response => response.json());
+    }
 }
 export default new EntryApi();

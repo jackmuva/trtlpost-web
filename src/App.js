@@ -10,6 +10,7 @@ import NewSeriesPage from "./components/NewSeriesPage";
 import DeleteConfirmationPage from "./components/DeleteConfirmationPage";
 import AboutPage from "./components/AboutPage";
 import HomePage from "./components/HomePage";
+import SeriesInfoPage from "./components/SeriesInfoPage";
 
 function App() {
     const [user, setUser] = useState([]);
@@ -42,6 +43,9 @@ function App() {
                 </Route>
                 <Route path = "/writerDashboard">
                     <WriterDashboard></WriterDashboard>
+                </Route>
+                <Route path="/series/:seriesId">
+                    <SeriesInfoPage></SeriesInfoPage>
                 </Route>
                 <Route path = "/">
                     <HomePage></HomePage>
