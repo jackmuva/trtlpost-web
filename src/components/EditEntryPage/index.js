@@ -21,7 +21,7 @@ function EditEntryPage(){
             onReady: () => {
                 ejInstance.current = editor;
             },
-            // autofocus: true,
+            autofocus: true,
             data: DEFAULT_INITIAL_DATA,
             tools: {
                 header: Header,
@@ -65,7 +65,7 @@ function EditEntryPage(){
         }
         fetchSeries();
 
-        if (ejInstance.current === null) {
+        if (ejInstance.current === undefined) {
             initEditor();
         }
 

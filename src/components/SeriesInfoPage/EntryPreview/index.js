@@ -6,14 +6,15 @@ import {useEffect, useRef} from "react";
 
 
 function EntryPreview({entry}){
-    console.log(entry.entryJson);
     let DEFAULT_INITIAL_DATA;
     const ejInstance = useRef();
     const initEditor = () => {
+        console.log("initiating editor");
         const editor = new EditorJS({
             readOnly:true,
             holder: 'editorjs',
             onReady: () => {
+                console.log("I'm ready");
                 ejInstance.current = editor;
             },
             // autofocus: true,
@@ -42,13 +43,15 @@ function EntryPreview({entry}){
                     }
                 }
             },
-        });
+        }
+
+        );
     };
 
     useEffect(() => {
         DEFAULT_INITIAL_DATA = JSON.parse(entry.entryJson);
 
-        if (ejInstance.current === null) {
+        if (ejInstance.current === undefined) {
             initEditor();
         }
 
