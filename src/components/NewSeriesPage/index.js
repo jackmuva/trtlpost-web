@@ -43,7 +43,9 @@ function NewSeriesPage() {
             cadence: null,
             penName: location.state.writer.writer[0].penName,
             email: location.state.writer.writer[0].email,
-            published: false
+            published: false,
+            numAllTimeReaders: 0,
+            numCurrentReaders: 0
         }
 
         series.title = document.getElementById("title").value;
