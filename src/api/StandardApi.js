@@ -1,5 +1,5 @@
-// const apiUrl = "https://52.23.154.131:5000";
-const apiUrl = "https://localhost:5000";
+const apiUrl = "https://44.222.61.154:80";
+// const apiUrl = "https://localhost:5000";
 export default class StandardApi {
 
     json(response){

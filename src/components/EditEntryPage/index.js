@@ -29,7 +29,7 @@ function EditEntryPage(){
                     class: ImageTool,
                     config: {
                         endpoints: {
-                            byFile: 'https://localhost:5000/api/image/save', // Your backend file uploader endpoint
+                            byFile: 'https://44.222.61.154:80/api/image/save', // Your backend file uploader endpoint
                             byUrl: '', // Your endpoint that provides uploading by Url
                         },
                         additionalRequestHeaders: {
@@ -40,7 +40,7 @@ function EditEntryPage(){
                 linkTool: {
                     class: LinkTool,
                     config: {
-                        endpoint: 'https://localhost:5000/api/fetchUrl', // Your backend endpoint for url data fetching,
+                        endpoint: 'https://44.222.61.154:80/api/fetchUrl', // Your backend endpoint for url data fetching,
                         headers: {
                             'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
                         }

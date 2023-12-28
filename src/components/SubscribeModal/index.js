@@ -15,7 +15,6 @@ function SubscribeModal(props) {
         seriesId:''
     });
 
-    // Open the modal form and update the car state
     const handleClickOpen = () => {
         let dateString = new Date().toISOString().slice(0, 10);
         setSubscription({
@@ -27,7 +26,6 @@ function SubscribeModal(props) {
         setOpen(true);
     }
 
-    // Close the modal form
     const handleClose = () => {
         setOpen(false);
     };
@@ -37,7 +35,6 @@ function SubscribeModal(props) {
             [event.target.name]: event.target.value});
     }
 
-    // Update car and close modal form
     const handleSave = () => {
         SubscriptionApi.postNewSubscription(subscription);
         handleClose();

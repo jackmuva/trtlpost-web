@@ -4,6 +4,7 @@ import SeriesApi from "../../api/SeriesApi";
 import SubscribeModal from "../SubscribeModal";
 import EntryApi from "../../api/EntryApi";
 import EntryPreview from "./EntryPreview";
+import Series from "../SeriesPage/Series";
 
 
 const SeriesInfoPage = () => {
@@ -31,26 +32,11 @@ const SeriesInfoPage = () => {
         return (
             <div className="flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
                 md:flex-row md:space-y-0 md:mx-52">
-                <div className="p-6 md:p-20 grid grid-cols-4 border-b-2 border-stone-200">
-                    <div className="col-span-3">
-                        <h1>{series[0].title}</h1>
-                        <h3 class="ml-3 my-0 font-sans text-base"> Written By: {series[0].penName}</h3>
-                        <h3 class="font-sans text-base overflow-auto">Summary: {series[0].summary}</h3>
-                        <div className="flex">
-                            <p className="mr-3 font-sans text-xs"> Total Entries: <strong>{series[0].numEntries}</strong>
-                            </p>
-                            <p className="mr-3 font-sans text-xs"> Cadence: <strong>Every {series[0].cadence} days</strong>
-                            </p>
-                            {series.tags !== '' &&
-                                <p className="mr-3 font-sans text-xs"> Tags: {series[0].tags} </p>}
-                        </div>
-                    </div>
-                    <div class="col-span-1 text-center">
-                        <SubscribeModal series = {series}></SubscribeModal>
-                    </div>
+                <div className="px-20 pt-20">
+                    <Series series={series[0]} fromWriterDashboard={false} />
                 </div>
-                <div className="pt-0 p-10 md:p-20 md:pt-10 mb-0">
-                    <h3>First Entry Preview</h3>
+                <div className="pt-10 mt-0 px-20 mb-0">
+                    <h2 className="ml-10">First Entry Preview:</h2>
                     <EntryPreview entry = {entry}></EntryPreview>
                 </div>
             </div>
