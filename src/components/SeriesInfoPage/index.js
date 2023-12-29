@@ -1,7 +1,6 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import SeriesApi from "../../api/SeriesApi";
-import SubscribeModal from "../SubscribeModal";
 import EntryApi from "../../api/EntryApi";
 import EntryPreview from "./EntryPreview";
 import Series from "../SeriesPage/Series";

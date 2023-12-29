@@ -1,6 +1,6 @@
 import SubscribeModal from "../../SubscribeModal";
 import {NavLink, Link} from 'react-router-dom';
-import React, {useState} from "react";
+import React from "react";
 import SeriesApi from "../../../api/SeriesApi";
 
 const Series = ({ series, fromWriterDashboard }) => {
