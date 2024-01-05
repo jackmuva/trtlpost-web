@@ -1,6 +1,6 @@
 // const apiUrl = "https://44.222.61.154:80";
-const apiUrl = "http://localhost:5000";
-// const apiUrl = "http://tm-rest-sv-alb-608003029.us-east-1.elb.amazonaws.com:5000"
+// const apiUrl = "http://localhost:5000";
+const apiUrl = "http://trtlmail-rest.com:5000"
 export default class StandardApi {
 
     json(response){
