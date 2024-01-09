@@ -89,5 +89,7 @@ background: url('http://localhost:8080/waw.png');
 1) Run `docker build -t trtlmail-web:latest .` to build project
 2) Run `docker run -p 3000:80 trtlmail-web:latest` to run on port 3000
 
-## For enabling https
-1) Install certificate in your browser as a pfx if not already done
+## Deploying to AWS
+- We are using cloudfront as our CDN with a single page site in S3
+- Run the build script and upload build assets to S3
+- Configure Cloudfront and ensure that error pages redirect ot index.html
