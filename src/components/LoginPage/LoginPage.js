@@ -28,6 +28,7 @@ function LoginPage ({setWriter}) {
                 sessionStorage.setItem("jwt", data.accessToken);
                 WriterApi.getLoggedInWriter().then(function(data){
                     setWriter(data);
+                    sessionStorage.setItem("penName", data[0].penName);
                 });
                 setErrorMessage("Login Successful");
 

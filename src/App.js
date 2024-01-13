@@ -16,10 +16,10 @@ const SeriesInfoPage = lazy(() => import("./components/SeriesInfoPage"));
 function App() {
     const [user, setUser] = useState([]);
 
-  return (
+    return (
       <Router>
         <div class="max-w-full bg-zinc-50">
-          <Header/>
+            <Header />
             <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
                     <Route path = "/about">
