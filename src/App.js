@@ -1,5 +1,5 @@
 import Header from "./components/Header/header";
-import { useState, Suspense, lazy } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const AboutPage = lazy(() => import("./components/AboutPage"));
@@ -20,7 +20,13 @@ function App() {
       <Router>
         <div class="max-w-full bg-zinc-50">
             <Header />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={
+                <div className="flex items-center md:mx-52">
+                    <div className="flex flex-col my-3 space-y-0 mx-6 min-w-full text-center items-center">
+                        <p className="my-8 font-sans"> Loading... </p>
+                    </div>
+                </div>}
+            >
                 <Switch>
                     <Route path = "/about">
                         <AboutPage></AboutPage>

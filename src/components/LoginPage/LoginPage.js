@@ -31,7 +31,6 @@ function LoginPage ({setWriter}) {
                     sessionStorage.setItem("penName", data[0].penName);
                 });
                 setErrorMessage("Login Successful");
-
             }
             else{
                 setErrorMessage("Login Unsuccessful");

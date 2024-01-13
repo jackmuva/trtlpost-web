@@ -52,9 +52,10 @@ function SignUpPage () {
             WriterApi.postNewWriter(writer).then(function(data) {
                 if(data.writerId){
                     setErrorMessage("Registration Complete");
+                }else{
+                    setErrorMessage("Error Registering");
                 }
             });
-            setErrorMessage("Error Registering");
         }
     };
 
