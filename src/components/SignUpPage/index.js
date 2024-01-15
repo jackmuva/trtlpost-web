@@ -43,21 +43,31 @@ function SignUpPage () {
                 email: email,
                 password: password
             };
-            AuthorizationApi.postNewUser(user);
-
-            let writer = {
-                penName: username,
-                email: email
-            }
-            WriterApi.postNewWriter(writer).then(function(data) {
-                if(data.writerId){
-                    setErrorMessage("Registration Complete");
-                }else{
-                    setErrorMessage("Error Registering");
+            AuthorizationApi.postNewUser(user).then(function(data){
+                console.log(data);
+                if(data.status === 400){
+                    setErrorMessage(data.body);
+                }
+                else{
+                    createWriter();
                 }
             });
         }
     };
+
+    const createWriter = () => {
+        let writer = {
+            penName: username,
+            email: email
+        }
+        WriterApi.postNewWriter(writer).then(function(data) {
+            if(data.writerId){
+                setErrorMessage("Registration Complete");
+            }else{
+                setErrorMessage("Error Registering");
+            }
+        });
+    }
 
     if(errorMessage === "Registration Complete"){
         return <Redirect to='/login'  />
