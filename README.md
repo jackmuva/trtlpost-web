@@ -90,6 +90,13 @@ background: url('http://localhost:8080/waw.png');
 2) Run `docker run -p 3000:80 trtlmail-web:latest` to run on port 3000
 
 ## Deploying to AWS
-- We are using cloudfront as our CDN with a single page site in S3
-- Run the build script and upload build assets to S3
-- Configure Cloudfront and ensure that error pages redirect ot index.html
+We are using cloudfront as our CDN with a single page site in S3
+1) Run the build script and upload build assets to S3
+2) Configure Cloudfront and ensure that error pages redirect ot index.html
+
+### For configuring Cloudfront
+- Make sure "Alternate domain name" is set to the domain you want in Route53
+- Use custom SSL cert
+  - Configure in Certificate Manager after requesting a public cert
+- We can also invalidate cache after S3 updates using "/*"
+
