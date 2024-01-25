@@ -6,12 +6,12 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 
 echo "Build Steps:"
 echo "building image..."
-docker build -t trtlmail-web .
-docker tag trtlmail-web:latest 514832027284.dkr.ecr.us-east-1.amazonaws.com/trtlmail-web:latest
+docker build -t trtlpost-web .
+docker tag trtlpost-web:latest 514832027284.dkr.ecr.us-east-1.amazonaws.com/trtlmail-web:latest
 
 echo "updating AWS ECS service..."
 aws ecs update-service --cluster trtlmail-rest-cluster --service tm-web-sv --force-new-deployment
 
 echo "Post-Build steps:"
 echo "pushing image to AWS ECR"
-docker push 514832027284.dkr.ecr.us-east-1.amazonaws.com/trtlmail-web:latest
+docker push 514832027284.dkr.ecr.us-east-1.amazonaws.com/trtlpost-web:latest

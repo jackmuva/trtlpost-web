@@ -5,7 +5,7 @@ function Header() {
                 <div className="flex-shrink-0 ml-6 cursor-pointer">
                     <i className="fas fa-wind fa-2x text-yellow-500"></i>
                     <a className="text-3xl font-extrabold font-sans text-indigo-700 hover:text-blue-300"
-                       href="/">Trtlmail</a>
+                       href="/">TrtlPost</a>
                 </div>
                 <ul className="flex overflow-x-hidden mr-10 font-semibold">
                     <li className="mr-6 p-1">

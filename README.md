@@ -86,8 +86,8 @@ Everything on there will be allowed to be got. Example:
 background: url('http://localhost:8080/waw.png');
 
 ## For Docker
-1) Run `docker build -t trtlmail-web:latest .` to build project
-2) Run `docker run -p 3000:80 trtlmail-web:latest` to run on port 3000
+1) Run `docker build -t trtlpost-web:latest .` to build project
+2) Run `docker run -p 3000:80 trtlpost-web:latest` to run on port 3000
 
 ## Deploying to AWS
 We are using cloudfront as our CDN with a single page site in S3
