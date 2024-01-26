@@ -15,8 +15,15 @@ function SubscribeModal(props) {
         seriesId:''
     });
 
+    Date.prototype.addDays = function(days) {
+        const date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+
     const handleClickOpen = () => {
-        let dateString = new Date().toISOString().slice(0, 10);
+        let dateString = new Date().addDays(1).toISOString().slice(0, 10);
+        console.log(dateString);
         setSubscription({
             subscriberEmail: '',
             articleNum: 1,
@@ -54,7 +61,7 @@ function SubscribeModal(props) {
                 </DialogContent>
                 <DialogActions class = "text-center mb-6">
                     <button class = "my-1 mx-2 p-1 rounded-md text-zinc-800 hover:text-cyan-400"
-                            onClick={handleSave}>Save</button>
+                            onClick={handleSave}>Subscribe</button>
                     <button class = "m-2 p-1"
                         onClick={handleClose}>Cancel</button>
                 </DialogActions>
