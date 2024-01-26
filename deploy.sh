@@ -1,17 +1,9 @@
 #!/bin/sh
 
-echo "Pre-Build Steps:"
-echo "authenticating with AWS ECR"
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 514832027284.dkr.ecr.us-east-1.amazonaws.com
+echo "Syncing S3 with build"
+aws s3 --region 'us-east-1' sync ./build 's3://trtlmail-cloudfront/'
+echo "Successfully synced"
 
-echo "Build Steps:"
-echo "building image..."
-docker build -t trtlpost-web .
-docker tag trtlpost-web:latest 514832027284.dkr.ecr.us-east-1.amazonaws.com/trtlmail-web:latest
-
-echo "updating AWS ECS service..."
-aws ecs update-service --cluster trtlmail-rest-cluster --service tm-web-sv --force-new-deployment
-
-echo "Post-Build steps:"
-echo "pushing image to AWS ECR"
-docker push 514832027284.dkr.ecr.us-east-1.amazonaws.com/trtlpost-web:latest
+echo "Invalidating cloudfront cache"
+aws cloudfront create-invalidation --distribution-id E2HK6Q1FA7SBK2 --paths '/*'
+echo "Successfully invalidated"

@@ -23,7 +23,6 @@ function SubscribeModal(props) {
 
     const handleClickOpen = () => {
         let dateString = new Date().addDays(1).toISOString().slice(0, 10);
-        console.log(dateString);
         setSubscription({
             subscriberEmail: '',
             articleNum: 1,
