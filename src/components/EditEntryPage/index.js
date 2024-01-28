@@ -7,6 +7,8 @@ import ImageTool from "@editorjs/image";
 import LinkTool from "@editorjs/link";
 import SeriesApi from "../../api/SeriesApi";
 import edjsHTML from "editorjs-html";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function EditEntryPage(){
     const location = useLocation();
@@ -84,6 +86,7 @@ function EditEntryPage(){
             const html = edjsParser.parse(outputData);
             entry.entryHtml = JSON.stringify(html);
             EntryApi.updateEntry(entry).then(function () {});
+            toast.success("Entry Saved");
         }).catch((error) => {
             console.log('Saving failed: ', error)
         });
@@ -92,6 +95,7 @@ function EditEntryPage(){
     return (
         <div>
             <div className="flex sticky top-2 flex-col">
+                <ToastContainer />
                 <NavLink class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit"
                          to={{pathname: '/editSeries', state: {series: {series}}}}>
                     Return to Entries

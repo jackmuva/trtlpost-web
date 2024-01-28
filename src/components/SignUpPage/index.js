@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import AuthorizationApi from "../../api/AuthorizationApi";
 import WriterApi from "../../api/WriterApi";
 import { Redirect } from 'react-router-dom';
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function SignUpPage () {
     const [username, setUsername] = useState(null);
@@ -48,6 +50,9 @@ function SignUpPage () {
                     setErrorMessage(data.body);
                 }
                 else{
+                    toast.success("Successfully Registered", {
+                        position: "top-center"
+                    });
                     createWriter();
                 }
             });
@@ -97,6 +102,7 @@ function SignUpPage () {
                 <div>
                     <img src="images/vanc-lake.png" className="h-full hidden md:block rounded-r-2xl" alt=""/>
                 </div>
+                <ToastContainer  />
             </div>);
     }
 };
