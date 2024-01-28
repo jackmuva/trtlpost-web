@@ -6,4 +6,4 @@ echo "Successfully synced"
 
 echo "Invalidating cloudfront cache"
 aws cloudfront create-invalidation --distribution-id E2HK6Q1FA7SBK2 --paths '/*'
-echo "Successfully invalidated"
+echo "Successfully invalidated cloudfront cache"

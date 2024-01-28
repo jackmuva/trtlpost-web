@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import SeriesApi from "../../../api/SeriesApi";
 import {useEffect, useState} from "react";
-const SeriesFilter = ({ posts, setSearchResults, searchPageNum, setSearchPageNum, setSearched }) => {
+const SeriesFilter = ({ posts, setSearchResults, searchPageNum, setSearchPageNum, setSearchTerm }) => {
     const [keyword, setKeyword] = useState("");
 
     const filtered = async (searchTerm) => {
@@ -11,14 +11,14 @@ const SeriesFilter = ({ posts, setSearchResults, searchPageNum, setSearchPageNum
         return setSearchResults(series);
     }
 
-    const handleSubmit = () => {;
+    const handleSubmit = () => {
         if(keyword !== ""){
             setSearchPageNum(0);
-            setSearched(true);
+            setSearchTerm(keyword);
             return filtered(keyword);
         }
         if(keyword === ""){
-            setSearched(false);
+            setSearchTerm(keyword);
             return setSearchResults(posts)
         }
     }
