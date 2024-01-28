@@ -5,6 +5,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import SubscriptionApi from "../../api/SubscriptionApi";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function SubscribeModal(props) {
     const [open, setOpen] = useState(false);
@@ -42,12 +44,15 @@ function SubscribeModal(props) {
     }
 
     const handleSave = () => {
-        SubscriptionApi.postNewSubscription(subscription);
+        SubscriptionApi.postNewSubscription(subscription).then(() => {
+            toast.success("Subscribed!");
+        });
         handleClose();
     }
 
     return(
         <div>
+            <ToastContainer />
             <button class = "mt-2 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800" onClick={handleClickOpen}>
                 Subscribe
             </button>
