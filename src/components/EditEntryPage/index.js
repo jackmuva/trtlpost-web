@@ -51,7 +51,6 @@ function EditEntryPage(){
     };
 
     function htmlLinkParser(block){
-        console.log(block);
         return `<a href = "${block.data.link}"> ${block.data.link} </a>`;
     }
 

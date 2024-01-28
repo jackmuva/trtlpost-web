@@ -9,12 +9,10 @@ function EntryPreview({entry}){
     let DEFAULT_INITIAL_DATA;
     const ejInstance = useRef();
     const initEditor = () => {
-        console.log("initiating editor");
         const editor = new EditorJS({
             readOnly:true,
             holder: 'editorjs',
             onReady: () => {
-                console.log("I'm ready");
                 ejInstance.current = editor;
             },
             // autofocus: true,

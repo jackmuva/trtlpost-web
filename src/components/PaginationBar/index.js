@@ -1,11 +1,19 @@
 import SeriesApi from "../../api/SeriesApi";
+import {useEffect, useState} from "react";
 
-function PaginationBar({ page, setPage, searchPageNum, setSearchPageNum, searchTerm }){
-    const checkNextPage = (fetchPageFunc, pageNum) => {
-        if(fetchPageFunc(pageNum + 1).length === 0){
-            return false
-        } else{
-            return true
+const PaginationBar = ({ page, setPage, searchPageNum, setSearchPageNum, searchTerm }) => {
+    const [nextPage, setNextPage] = useState(false);
+
+    useEffect(() => {
+        nextPageExists();
+    },[page, searchPageNum, searchTerm]);
+
+    const checkNextPage = async(fetchPageFunc, pageNum) => {
+        const nextPage = await fetchPageFunc(pageNum + 1);
+        if(nextPage.length === 0){
+            return setNextPage(false);
+        } else {
+            return setNextPage(true);
         }
     }
 
@@ -59,7 +67,7 @@ function PaginationBar({ page, setPage, searchPageNum, setSearchPageNum, searchT
                         {searchTerm !== "" && <>{searchPageNum + 1}</>}
                     </div>
                 </div>
-                {nextPageExists() &&
+                {nextPage &&
                     <div>
                         <button className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                                 onClick={() => increment()} type="submit">

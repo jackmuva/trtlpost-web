@@ -44,7 +44,6 @@ function SignUpPage () {
                 password: password
             };
             AuthorizationApi.postNewUser(user).then(function(data){
-                console.log(data);
                 if(data.status === 400){
                     setErrorMessage(data.body);
                 }
