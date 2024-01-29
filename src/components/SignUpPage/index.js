@@ -50,9 +50,7 @@ function SignUpPage () {
                     setErrorMessage(data.body);
                 }
                 else{
-                    toast.success("Successfully Registered", {
-                        position: "top-center"
-                    });
+                    toast.success("Successfully Registered");
                     createWriter();
                 }
             });
@@ -102,7 +100,6 @@ function SignUpPage () {
                 <div>
                     <img src="images/vanc-lake.png" className="h-full hidden md:block rounded-r-2xl" alt=""/>
                 </div>
-                <ToastContainer  />
             </div>);
     }
 };

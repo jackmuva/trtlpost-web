@@ -95,7 +95,6 @@ function EditEntryPage(){
     return (
         <div>
             <div className="flex sticky top-2 flex-col">
-                <ToastContainer />
                 <NavLink class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit"
                          to={{pathname: '/editSeries', state: {series: {series}}}}>
                     Return to Entries

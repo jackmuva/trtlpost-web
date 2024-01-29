@@ -52,7 +52,6 @@ function SubscribeModal(props) {
 
     return(
         <div>
-            <ToastContainer />
             <button class = "mt-2 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800" onClick={handleClickOpen}>
                 Subscribe
             </button>

@@ -1,6 +1,7 @@
 import Header from "./components/Header/header";
 import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {ToastContainer} from "react-toastify";
 
 const AboutPage = lazy(() => import("./components/AboutPage"));
 const SignUpPage = lazy(() => import("./components/SignUpPage"));
@@ -19,6 +20,7 @@ function App() {
     return (
       <Router>
         <div class="max-w-full bg-zinc-50">
+            <ToastContainer />
             <Header />
             <Suspense fallback={
                 <div className="flex items-center md:mx-52">
