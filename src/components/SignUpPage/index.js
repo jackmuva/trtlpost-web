@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import AuthorizationApi from "../../api/AuthorizationApi";
 import WriterApi from "../../api/WriterApi";
 import { Redirect } from 'react-router-dom';
-import {toast, ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
+import {toast} from "react-toastify";
 
 function SignUpPage () {
     const [username, setUsername] = useState(null);

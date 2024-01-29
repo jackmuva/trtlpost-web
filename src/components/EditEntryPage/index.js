@@ -7,8 +7,7 @@ import ImageTool from "@editorjs/image";
 import LinkTool from "@editorjs/link";
 import SeriesApi from "../../api/SeriesApi";
 import edjsHTML from "editorjs-html";
-import {toast, ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
+import {toast} from "react-toastify";
 
 function EditEntryPage(){
     const location = useLocation();
