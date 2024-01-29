@@ -3,6 +3,7 @@ import Header from "@editorjs/header";
 import ImageTool from "@editorjs/image";
 import LinkTool from "@editorjs/link";
 import {useEffect, useRef} from "react";
+import EditorJsApi from "../../../api/EditorJsApi";
 
 
 function EntryPreview({entry}){
@@ -23,7 +24,7 @@ function EntryPreview({entry}){
                     class: ImageTool,
                     config: {
                         endpoints: {
-                            byFile: 'https://trtlmail-rest.com/api/image/save', // Your backend file uploader endpoint
+                            byFile: EditorJsApi.getSaveImageUrl(), // Your backend file uploader endpoint
                             byUrl: '', // Your endpoint that provides uploading by Url
                         },
                         additionalRequestHeaders: {
@@ -34,7 +35,7 @@ function EntryPreview({entry}){
                 linkTool: {
                     class: LinkTool,
                     config: {
-                        endpoint: 'https://trtlmail-rest.com/api/fetchUrl', // Your backend endpoint for url data fetching,
+                        endpoint: EditorJsApi.getLinkUrl(), // Your backend endpoint for url data fetching,
                         headers: {
                             'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
                         }

@@ -8,6 +8,7 @@ import LinkTool from "@editorjs/link";
 import SeriesApi from "../../api/SeriesApi";
 import edjsHTML from "editorjs-html";
 import {toast} from "react-toastify";
+import EditorJsApi from "../../api/EditorJsApi";
 
 function EditEntryPage(){
     const location = useLocation();
@@ -30,7 +31,7 @@ function EditEntryPage(){
                     class: ImageTool,
                     config: {
                         endpoints: {
-                            byFile: 'https://trtlmail-rest.com/api/image/save', // Your backend file uploader endpoint
+                            byFile: EditorJsApi.getSaveImageUrl(), // Your backend file uploader endpoint
                             byUrl: '', // Your endpoint that provides uploading by Url
                         },
                         additionalRequestHeaders: {
@@ -41,7 +42,7 @@ function EditEntryPage(){
                 linkTool: {
                     class: LinkTool,
                     config: {
-                        endpoint: 'https://trtlmail-rest.com/api/fetchUrl', // Your backend endpoint for url data fetching,
+                        endpoint: EditorJsApi.getLinkUrl(), // Your backend endpoint for url data fetching,
                         headers: {
                             'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
                         }
