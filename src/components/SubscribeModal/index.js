@@ -5,6 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import SubscriptionApi from "../../api/SubscriptionApi";
+import {toast} from "react-toastify";
 
 function SubscribeModal(props) {
     const [open, setOpen] = useState(false);
@@ -42,7 +43,9 @@ function SubscribeModal(props) {
     }
 
     const handleSave = () => {
-        SubscriptionApi.postNewSubscription(subscription);
+        SubscriptionApi.postNewSubscription(subscription).then(() => {
+            toast.success("Subscribed!");
+        });
         handleClose();
     }
 

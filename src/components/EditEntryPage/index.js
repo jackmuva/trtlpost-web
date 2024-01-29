@@ -7,6 +7,7 @@ import ImageTool from "@editorjs/image";
 import LinkTool from "@editorjs/link";
 import SeriesApi from "../../api/SeriesApi";
 import edjsHTML from "editorjs-html";
+import {toast} from "react-toastify";
 
 function EditEntryPage(){
     const location = useLocation();
@@ -84,6 +85,7 @@ function EditEntryPage(){
             const html = edjsParser.parse(outputData);
             entry.entryHtml = JSON.stringify(html);
             EntryApi.updateEntry(entry).then(function () {});
+            toast.success("Entry Saved");
         }).catch((error) => {
             console.log('Saving failed: ', error)
         });

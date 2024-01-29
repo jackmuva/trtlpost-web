@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import AuthorizationApi from "../../api/AuthorizationApi";
 import WriterApi from "../../api/WriterApi";
 import { Redirect } from 'react-router-dom';
+import {toast} from "react-toastify";
 
 function SignUpPage () {
     const [username, setUsername] = useState(null);
@@ -48,6 +49,7 @@ function SignUpPage () {
                     setErrorMessage(data.body);
                 }
                 else{
+                    toast.success("Successfully Registered");
                     createWriter();
                 }
             });
