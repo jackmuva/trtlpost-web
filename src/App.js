@@ -3,6 +3,7 @@ import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
+import UnsubscribePage from "./components/UnsubscribePage";
 
 const AboutPage = lazy(() => import("./components/AboutPage"));
 const SignUpPage = lazy(() => import("./components/SignUpPage"));
@@ -57,6 +58,9 @@ function App() {
                     </Route>
                     <Route path="/series/:seriesId">
                         <SeriesInfoPage></SeriesInfoPage>
+                    </Route>
+                    <Route path="/unsubscribe/:email/:seriesId">
+                        <UnsubscribePage></UnsubscribePage>
                     </Route>
                     <Route path = "/">
                         <HomePage></HomePage>

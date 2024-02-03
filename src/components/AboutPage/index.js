@@ -35,9 +35,9 @@ const AboutPage = () => {
                     <br/><br/>
                     The second idea behind TrtlPost is for a slower medium for receiving content. With Youtube, Netflix, Medium,
                     and other great online platforms, it's easy to read and watch videos, shows, and articles to your heart's
-                    content. They're really great platforms that we're glad exist. With TrtlPost, we wanted to offer a change
-                    of pace and capture that feeling of anticipation and payoff of something that takes a bit longer like
-                    getting that magazine once a month or waiting for that new TV episode every week.
+                    content. With TrtlPost, we wanted to offer a change of pace and capture that feeling of anticipation
+                    and payoff of something that takes a bit longer like getting that magazine once a month or waiting
+                    for that new TV episode every week.
                     <br/><br/>
                     We hope you like our platform and if you have any feedback or comments, feel free to email me at jackmu@umich.edu
                 </p>

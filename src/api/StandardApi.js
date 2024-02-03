@@ -33,7 +33,11 @@ export default class StandardApi {
             }
         });
     }
-
+    delete(url){
+        return fetch(apiUrl.concat(url), {
+            method: 'DELETE'
+        });
+    }
     postWithAuth(url, payload){
         return fetch(apiUrl.concat(url), {
             method: 'POST',
