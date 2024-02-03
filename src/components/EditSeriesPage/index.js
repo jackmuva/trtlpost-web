@@ -19,12 +19,7 @@ function EditSeriesPage(){
         setEdited(false);
     }, [edited]);
 
-    const createEntry = () => {
-        let maxOrder = 1;
-        if(entries.length > 0){
-            maxOrder = entries.sort(function(a, b){return a.orderNum - b.orderNum})[entries.length - 1].orderNum + 1;
-        }
-
+    const createEntry = (maxOrder) => {
         let entry = {
             seriesId: location.state.series.series.seriesId,
             entryJson: "{\"blocks\":[{\"type\":\"paragraph\",\"data\":{\"text\":\"Start Writing\"}}],\"version\":\"2.28.0\"}",
@@ -73,7 +68,7 @@ function EditSeriesPage(){
         });
         return(
             <div>
-                <button onClick={() => createEntry()} type="submit"
+                <button onClick={() => createEntry(maxOrder + 1)} type="submit"
                         class="m-4 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800">
                     Create New Entry
                 </button>
