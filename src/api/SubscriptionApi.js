@@ -9,7 +9,7 @@ class SubscriptionApi extends StandardApi{
         return this.post('/api/subscription/new', subscription).then(response => response.json());
     }
     deleteSubscription(email, seriesId){
-        return this.delete(`/api/subscription/cancelSubscription/${email}/${seriesId}`)
+        return this.delete(`/api/subscription/cancelSubscription/${email}/${seriesId}`);
     }
 
 }

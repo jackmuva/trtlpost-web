@@ -3,7 +3,6 @@ import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
-import UnsubscribePage from "./components/UnsubscribePage";
 
 const AboutPage = lazy(() => import("./components/AboutPage"));
 const SignUpPage = lazy(() => import("./components/SignUpPage"));
@@ -15,6 +14,7 @@ const NewSeriesPage = lazy(() => import("./components/NewSeriesPage"));
 const DeleteConfirmationPage = lazy(() => import("./components/DeleteConfirmationPage"));
 const HomePage = lazy(() => import("./components/HomePage"));
 const SeriesInfoPage = lazy(() => import("./components/SeriesInfoPage"));
+const UnsubscribePage = lazy(() => import("./components/UnsubscribePage"));
 
 function App() {
     const [user, setUser] = useState([]);
@@ -59,7 +59,7 @@ function App() {
                     <Route path="/series/:seriesId">
                         <SeriesInfoPage></SeriesInfoPage>
                     </Route>
-                    <Route path="/unsubscribe/:email/:seriesId">
+                    <Route path="/unsubscribe">
                         <UnsubscribePage></UnsubscribePage>
                     </Route>
                     <Route path = "/">
