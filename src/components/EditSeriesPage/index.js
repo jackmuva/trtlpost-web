@@ -47,7 +47,7 @@ function EditSeriesPage(){
     if(entries.length === 0){
         return (
             <div>
-                <button onClick={() => createEntry()} type="submit"
+                <button onClick={() => createEntry(1)} type="submit"
                         className="m-4 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800">
                     Create New Entry
                 </button>
