@@ -44,7 +44,8 @@ const DeleteConfirmationPage = () => {
     };
 
     if(errorMessage === "Deleted Successfully" && type === "series"){
-        return <Redirect to='/writerDashboard' />
+        let redUrl = '/writer/' + obj?.series.penName;
+        return <Redirect to = {redUrl} />
     } else if (errorMessage === "Deleted Successfully" && type === "entry"){
         return <Redirect to={{
             pathname: "/editSeries",
