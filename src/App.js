@@ -38,7 +38,7 @@ function App() {
                     <Route path = "/deleteConfirmation">
                         <DeleteConfirmationPage></DeleteConfirmationPage>
                     </Route>
-                    <Route path = "/newSeries">
+                    <Route path = "/writer/:penName/newSeries">
                         <NewSeriesPage></NewSeriesPage>
                     </Route>
                     <Route path = "/editEntry">
