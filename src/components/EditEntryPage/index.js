@@ -79,16 +79,16 @@ function EditEntryPage(){
     const handleSubmit = async () => {
         let content = await ejInstance.current.saver.save();
         entry.entryJson = JSON.stringify(content);
-        EntryApi.updateEntry(entry).then(function (data){});
 
         const edjsParser = edjsHTML({linkTool: htmlLinkParser});
-        ejInstance.current.save().then((outputData) => {
+        ejInstance.current?.save().then((outputData) => {
             const html = edjsParser.parse(outputData);
             entry.entryHtml = JSON.stringify(html);
-            EntryApi.updateEntry(entry).then(function () {});
-            toast.success("Entry Saved");
-        }).catch((error) => {
-            console.log('Saving failed: ', error)
+            EntryApi.updateEntry(entry).then(() => {
+                toast.success("Entry Saved");
+            });
+        }).catch(() => {
+            toast.error('Saving failed');
         });
     };
 
@@ -96,7 +96,7 @@ function EditEntryPage(){
         <div>
             <div className="flex sticky top-2 flex-col">
                 <NavLink class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit"
-                         to={{pathname: '/editSeries', state: {series: {series}}}}>
+                         onClick={() => handleSubmit()} to={{pathname: '/editSeries', state: {series: {series}}}}>
                     Return to Entries
                 </NavLink>
                 <button class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-green-800 hover:bg-green-950 max-w-fit"
