@@ -21,7 +21,7 @@ function App() {
 
     return (
       <Router>
-        <div class="max-w-full bg-zinc-50">
+        <div class="max-w-full bg-zinc-50 overflow-x-hidden">
             <ToastContainer />
             <Header />
             <Suspense fallback={

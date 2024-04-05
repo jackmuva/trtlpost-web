@@ -1,18 +1,25 @@
+import React from "react";
 
 
 const AboutPage = () => {
     return(
-        <div class="flex justify-center items-center w-screen">
-            <div className="flex flex-col m-6 px-6 pt-4 pb-8 space-y-2 bg-white shadow-2xl rounded-2xl md:mx-52 w-1/2">
-                <h2 className="font-sans test-4xl font-bold mb-0 mt-4">
+        <div class="flex flex-col justify-center items-center w-screen">
+            <div className="flex flex-col m-6 px-6 pt-4 pb-8 space-y-2 md:mx-52 w-1/2">
+                <h2 className="font-sans text-4xl font-bold mb-0 mt-4 text-indigo-700">
                     Welcome to TrtlPost
                 </h2>
-                <p class="ml-8 mb-4 max-2-sm font-sans">
+                <p class="ml-8 mb-4 max-2-sm font-sans text-xl">
                     TrtlPost is a platform for readers and writers to read and subscribe to email series.
                     We look at email series as a set number of emails that writers do not need to consistently add to.
                     Writers can write out their emails and choose how often readers will receive them (i.e. every 2 days,
                     every week, every month, etc).
-                    <br/><br/>
+                </p>
+            </div>
+            <div class="w-screen flex justify-center items-center bg-white">
+                <img src="images/email-series.png" className="w-1/2 rounded-r-2xl md:block" alt=""/>
+            </div>
+            <div className="flex flex-col m-6 px-6 pt-4 pb-8 space-y-2 md:mx-52 w-1/2">
+                <p className="ml-8 mb-4 max-2-sm font-sans text-xl">
                     Readers after subscribing will receive the series in its entirety, from the first entry to
                     the last one.
                     <br/><br/>
@@ -20,9 +27,12 @@ const AboutPage = () => {
                     in your email. If you are looking to write an email series, sign up for an account!
                 </p>
 
-                <h2 className="font-sans text-2xl font-bold mb-0">
-                    Main Idea behind TrtlPost
+                <h2 className="font-sans text-4xl font-bold mb-0 mt-4 text-indigo-700">
+                    Why TrtlPost?
                 </h2>
+                <h3 className="font-sans text-5xl font-bold mb-0 mt-4 text-blue-600">
+                    You don't have to be a full time newsletter writer
+                </h3>
                 <p className="ml-8 mb-8 max-2-sm font-sans">
                     There are two main ideas behind the idea for this platform. First, we thought that email series
                     are a great way for writers to write an "email newsletter" where they can write about things that they
