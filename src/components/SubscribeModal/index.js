@@ -61,7 +61,7 @@ function SubscribeModal(props) {
 
     return(
         <div>
-            <button class = "mt-2 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800" onClick={handleClickOpen}>
+            <button class = "text-xl mt-2 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800" onClick={handleClickOpen}>
                 Subscribe
             </button>
             <Dialog class = "flex flex-col md:flex-row rounded-l-xl p-10" open={open} onClose={handleClose}>
@@ -72,9 +72,9 @@ function SubscribeModal(props) {
                                    onChange={handleChange}/>
                 </DialogContent>
                 <DialogActions class = "text-center mb-6">
-                    <button class = "my-1 mx-2 p-1 rounded-md text-zinc-800 hover:text-cyan-400"
+                    <button class = "text-lg my-1 mx-2 p-1 rounded-md text-zinc-800 hover:text-cyan-400"
                             onClick={handleSave}>Subscribe</button>
-                    <button class = "m-2 p-1"
+                    <button class = "text-lg m-2 p-1"
                         onClick={handleClose}>Cancel</button>
                 </DialogActions>
             </Dialog>
