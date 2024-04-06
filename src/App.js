@@ -41,6 +41,9 @@ function App() {
                     <Route path = "/writer/:penName/newSeries">
                         <NewSeriesPage></NewSeriesPage>
                     </Route>
+                    <Route path = "/writer/:penName/editSeriesDetails/:seriesId">
+                        <NewSeriesPage></NewSeriesPage>
+                    </Route>
                     <Route path = "/editEntry">
                         <EditEntryPage></EditEntryPage>
                     </Route>

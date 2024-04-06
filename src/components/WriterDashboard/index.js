@@ -38,7 +38,7 @@ function WriterDashboard (){
                     <NavLink class="px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800"
                              to={{
                                  pathname: `${penName}/newSeries`,
-                                 state: {writer: {writer}}
+                                 state: {type: 'create', writer: {writer}}
                              }}>
                         Create New Series
                     </NavLink>

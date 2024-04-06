@@ -65,6 +65,14 @@ const SeriesWriterView = ({ series }) => {
                     </label>
                 </div>
                 <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
+                    <NavLink class = "text-xl" to={{
+                        pathname: `${series.penName}/editSeriesDetails/${series.seriesId}`,
+                        state: {type:'edit', series: {series}}
+                    }}>
+                        Edit Series Details
+                    </NavLink>
+                </button>
+                <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
                     <NavLink class = "text-xl" to={{pathname: '/deleteConfirmation', state: {type: 'series', obj: { series }}}}>
                         Delete Series
                     </NavLink>

@@ -1,11 +1,24 @@
 import {Redirect, useLocation} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import SeriesApi from "../../api/SeriesApi";
 
 
-function NewSeriesPage({ editedSeries }) {
+function NewSeriesPage() {
     const location = useLocation();
+    const [series, setSeries] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null)
+
+    useEffect(() => {
+        const fetchSeries = async() => {
+            const rsp = SeriesApi.getSeriesById(location.state.series.series.seriesId);
+            const ser = await rsp;
+            setSeries(ser[0]);
+        }
+        if(location.state.type === 'edit'){
+            fetchSeries();
+        }
+    }, []);
+    
     function getDateTime() {
         let now     = new Date();
         let year    = now.getFullYear();
@@ -34,7 +47,7 @@ function NewSeriesPage({ editedSeries }) {
     }
 
     const handleSubmitForCreate = () => {
-       let series = {
+       let ser = {
             datetime: getDateTime(),
             numEntries: 0,
             title: null,
@@ -48,49 +61,53 @@ function NewSeriesPage({ editedSeries }) {
             numCurrentReaders: 0
         }
 
-        series.title = document.getElementById("title").value;
-        series.summary = document.getElementById("summary").value;
-        series.tags = document.getElementById("tags").value;
-        series.cadence = document.getElementById("cadence").value;
-        if (series.title === '' || series.summary === '' || series.cadence === '') {
+        ser.title = document.getElementById("title").value;
+        ser.summary = document.getElementById("summary").value;
+        ser.tags = document.getElementById("tags").value;
+        ser.cadence = document.getElementById("cadence").value;
+        if (ser.title === '' || ser.summary === '' || ser.cadence === '') {
             setErrorMessage('Title, Summary, and Cadence may not be blank');
         } else {
-            SeriesApi.postSeries(series).then(() => {
+            SeriesApi.postSeries(ser).then(() => {
                 setErrorMessage('Created Successfully');
             });
         }
     }
 
     const handleSubmitForEdit = () => {
-        let series = {
+        console.log(series);
+        let ser = {
             datetime: getDateTime(),
-            numEntries: editedSeries.numEntries,
-            title: editedSeries.title,
-            summary: editedSeries.summary,
-            tags: editedSeries.tags,
-            cadence: editedSeries.cadence,
-            penName: editedSeries.penName,
-            email: editedSeries.email,
-            published: editedSeries.published,
-            numAllTimeReaders: editedSeries.numAllTimeReaders,
-            numCurrentReaders: editedSeries.numCurrentReaders
+            numEntries: series.numEntries,
+            title: series.title,
+            summary: series.summary,
+            tags: series.tags,
+            cadence: series.cadence,
+            penName: series.penName,
+            email: series.email,
+            published: series.published,
+            numAllTimeReaders: series.numAllTimeReaders,
+            numCurrentReaders: series.numCurrentReaders
         }
 
-        series.title = document.getElementById("title").value;
-        series.summary = document.getElementById("summary").value;
-        series.tags = document.getElementById("tags").value;
-        series.cadence = document.getElementById("cadence").value;
-        if (series.title === '' || series.summary === '' || series.cadence === '') {
+        ser.title = document.getElementById("title").value;
+        ser.summary = document.getElementById("summary").value;
+        ser.tags = document.getElementById("tags").value;
+        ser.cadence = document.getElementById("cadence").value;
+        if (ser.title === '' || ser.summary === '' || ser.cadence === '') {
             setErrorMessage('Title, Summary, and Cadence may not be blank');
         } else {
-            SeriesApi.putSeries(series).then(() => {
-                setErrorMessage('Created Successfully');
+            SeriesApi.putSeries(ser).then(() => {
+                setErrorMessage('Edited Successfully');
             });
         }
     }
 
     if (errorMessage === 'Created Successfully') {
         let redUrl = '/writer/' + location.state.writer.writer[0].penName;
+        return <Redirect to = {redUrl} />
+    } else if (errorMessage === 'Edited Successfully') {
+        let redUrl = '/writer/' + series.penName;
         return <Redirect to = {redUrl} />
     } else {
         return (
@@ -102,12 +119,12 @@ function NewSeriesPage({ editedSeries }) {
                         After creating, you will be able to add entries, edit this information, and publish from the writer home page
                     </p>
                     <input type="text" id="title" class="h-1 w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
-                           placeholder="Title" value = {editedSeries?.title}/>
+                           placeholder="Title" defaultValue = {series?.title}/>
                     <textarea rows="4" id="summary" class="block w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
-                           placeholder="Summary" value = {editedSeries?.summary}/>
+                           placeholder="Summary" defaultValue = {series?.summary}/>
                     <input type="text" id="tags" class="h-1 w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                            placeholder="Any keyword you'd want your series to be searchable for (separate words with a comma)"
-                            value = {editedSeries?.tags}/>
+                            value = {series?.tags}/>
                     <div>
                         <p className="mb-2 max-2-sm font-sans font-light text-gray-600">
                             Specify number of days that subscribers will wait between emails
@@ -115,17 +132,17 @@ function NewSeriesPage({ editedSeries }) {
                         <input type="number" id="cadence"
                                className="h-1 p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                                min="1" max="30"
-                                value = {editedSeries?.cadence}/>
+                                defaultValue = {series?.cadence}/>
                     </div>
                     {errorMessage && <div class="text-red-700 my-2"> {errorMessage} </div>}
                     <div>
-                        {editedSeries === undefined &&
+                        {series === null &&
                             <button class="w-full md:w-auto h-1 flex justify-center items-center p-6 space-x-4 font-sans font-bold text-white rounded-md shadow-lg px-9 bg-cyan-700 shadow-cyan-100 hover:bg-opacity-90 shadow-sm hover:shadow-lg border transition hover:-translate-y-0.5 duration-150"
                                 onClick={() => handleSubmitForCreate()} type="submit">
                                 Create
                             </button>
                         }
-                        {editedSeries !== undefined &&
+                        {series !== null &&
                             <button class="w-full md:w-auto h-1 flex justify-center items-center p-6 space-x-4 font-sans font-bold text-white rounded-md shadow-lg px-9 bg-cyan-700 shadow-cyan-100 hover:bg-opacity-90 shadow-sm hover:shadow-lg border transition hover:-translate-y-0.5 duration-150"
                                     onClick={() => handleSubmitForEdit()} type="submit">
                                 Edit
