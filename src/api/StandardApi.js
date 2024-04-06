@@ -1,5 +1,5 @@
-// const apiUrl = "http://localhost:5000";
-const apiUrl = "https://trtlmail-rest.com"
+const apiUrl = "http://localhost:5000";
+// const apiUrl = "https://trtlmail-rest.com"
 
 export default class StandardApi {
     retrieveApiUrl(){
