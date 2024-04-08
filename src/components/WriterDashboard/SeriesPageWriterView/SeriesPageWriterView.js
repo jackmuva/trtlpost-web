@@ -1,7 +1,7 @@
-import Series from "./Series";
 import React from "react";
+import SeriesWriterView from "../SeriesWriterView/SeriesWriterView";
 
-const SeriesPage = ({ allSeries }) => {
+const SeriesPageWriterView = ({ allSeries }) => {
 
     if(allSeries.length === 0) {
         return (
@@ -14,7 +14,7 @@ const SeriesPage = ({ allSeries }) => {
     }
     else {
         const arraySeriesItems = allSeries.map(series =>
-            <Series series={series}/>
+            <SeriesWriterView series={series}/>
         );
         return (
             <div class = "flex items-center md:mx-52">
@@ -27,4 +27,4 @@ const SeriesPage = ({ allSeries }) => {
 
 }
 
-export default SeriesPage;
+export default SeriesPageWriterView;

@@ -1,8 +1,8 @@
 import WriterApi from "../../api/WriterApi";
 import React, {useEffect, useState} from "react";
 import SeriesApi from "../../api/SeriesApi";
-import SeriesPage from "../SeriesPage/series-page";
 import {NavLink} from 'react-router-dom';
+import SeriesPageWriterView from "./SeriesPageWriterView/SeriesPageWriterView";
 
 
 function WriterDashboard (){
@@ -40,7 +40,7 @@ function WriterDashboard (){
                     Create New Series
                 </NavLink>
             </div>
-            <SeriesPage allSeries={series} fromWriter={true}></SeriesPage>
+            <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
         </div>
     );
 }
