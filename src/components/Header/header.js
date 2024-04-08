@@ -1,4 +1,5 @@
 function Header() {
+    let writerUrl = "/writer/" + sessionStorage.getItem("penName");
     return (
         <div className="mx-auto">
             <header className="flex justify-between items-center sticky top-0 z-10 py-8 bg-gradient-to-b from-blue-300">
@@ -21,7 +22,7 @@ function Header() {
                         <a className="font-sans text-indigo-700 hover:text-blue-300" href="/about">About</a>
                     </li>
                     {sessionStorage.getItem("jwt") != null && <li className="mr-6 p-1">
-                        <a className="font-sans text-indigo-700 hover:text-blue-300" href="/writerDashboard">{sessionStorage.getItem("penName")}</a>
+                        <a className="font-sans text-indigo-700 hover:text-blue-300" href={writerUrl}>{sessionStorage.getItem("penName")}</a>
                     </li>}
                 </ul>
             </header>
