@@ -31,26 +31,26 @@ function WriterDashboard (){
         }
     }, [writer])
 
-    return(
-        <div>
-            {sessionStorage.getItem("jwt") !== null &&
-                    <div>
-                        <div className="m-4">
-                            <NavLink class="px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800"
-                                     to={{
-                                         pathname: '/newSeries',
-                                         state: {writer: {writer}}
-                                     }}>
-                                Create New Series
-                            </NavLink>
-                        </div>
-                        <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
-                    </div>
-            }
-            {sessionStorage.getItem("jwt") === null &&
+    if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
+        return (
+            <div>
+                <div className="m-4">
+                    <NavLink class="px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800"
+                             to={{
+                                 pathname: '/newSeries',
+                                 state: {writer: {writer}}
+                             }}>
+                        Create New Series
+                    </NavLink>
+                </div>
+                <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
+            </div>
+        );
+    } else {
+        return(
+            <div>
                 <SeriesPage allSeries={series}></SeriesPage>
-            }
-        </div>
-    );
+            </div>
+        );
 }
 export default WriterDashboard;
