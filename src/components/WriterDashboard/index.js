@@ -47,10 +47,11 @@ function WriterDashboard (){
             </div>
         );
     } else {
-        return(
+        return (
             <div>
                 <SeriesPage allSeries={series}></SeriesPage>
             </div>
         );
+    }
 }
 export default WriterDashboard;
