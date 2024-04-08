@@ -42,7 +42,9 @@ const SeriesWriterView = ({ series }) => {
         <div class="grid grid-cols-4 border-b-2 border-stone-200">
             <div class="p-1 m-0 col-span-3">
                 <div class = "flex-auto">
-                    <Link to={{ pathname:`series/${series.seriesId}`}} class="mb-0 font-sans text-3xl font-bold hover:text-blue-300"> {series.title}</Link>
+                    <NavLink to={{pathname:'/editSeries', state: {series: {series}}}} class="mb-0 font-sans text-3xl font-bold hover:text-blue-300">
+                        {series.title}
+                    </NavLink>
                     <h3 class="ml-3 my-0 font-sans text-base"> Written By: {series.penName}</h3>
                     <h3 class="font-sans text-base overflow-auto">Summary: {series.summary}</h3>
                 </div>
@@ -54,11 +56,6 @@ const SeriesWriterView = ({ series }) => {
                 </div>
             </div>
             <div class="col-span-1 text-center">
-                <button class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-800">
-                    <NavLink to={{pathname:'/editSeries', state: {series: {series}}}}>
-                        Edit
-                    </NavLink>
-                </button>
                 <div class="m-2">
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" class="sr-only peer"
