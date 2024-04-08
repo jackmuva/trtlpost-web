@@ -3,7 +3,7 @@ import AuthorizationApi from "../../api/AuthorizationApi";
 import {Redirect} from "react-router-dom";
 import WriterApi from "../../api/WriterApi";
 
-function LoginPage ({setWriter}) {
+function LoginPage({ setWriter }) {
     const [email, setEmail] = useState(null);
     const [password,setPassword] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -29,8 +29,8 @@ function LoginPage ({setWriter}) {
                 WriterApi.getLoggedInWriter().then(function(data){
                     setWriter(data);
                     sessionStorage.setItem("penName", data[0].penName);
+                    setErrorMessage("Login Successful");
                 });
-                setErrorMessage("Login Successful");
             }
             else{
                 setErrorMessage("Login Unsuccessful");
@@ -39,7 +39,8 @@ function LoginPage ({setWriter}) {
     };
 
     if(errorMessage === "Login Successful"){
-        return <Redirect to='/writerDashboard'  />
+        let redirectUrl = '/writer/' + sessionStorage.getItem("penName");
+        return <Redirect to={redirectUrl}/>
     }
     else {
         return (

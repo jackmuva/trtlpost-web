@@ -20,7 +20,7 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
         if(title === '' || orderNum === ''){
             setErrorMessage('Title and Order may not be blank');
         } else {
-            EntryApi.updateEntry(entry).then((data) => {
+            EntryApi.updateEntry(entry).then(() => {
                 toggleEditable();
                 setEdited(true);
             }).catch((err) => {
@@ -74,16 +74,12 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
                     </div>
                     <div class="inline-flex">
                         <h3 className="ml-3 my-0 font-sans text-base"> Order: </h3>
-                        {/*<input type="number" id="order" min="1" max = {maxEntry}*/}
-                        {/*       class="mr-2 px-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"*/}
-                        {/*       defaultValue={entry.orderNum}/>*/}
                         <select id="order" class="mr-2 px-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light">
                             { createOrderOptions(maxEntry) }
                         </select>
                     </div>
                     {errorMessage && <div className="error"> {errorMessage} </div>}
                 </div>
-                {/*TODO: See if I can display entry content*/}
                 <div className="col-span-1 text-center flex flex-col">
                     <button onClick={() => handleSubmit()} type="submit"
                             className="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">

@@ -53,7 +53,7 @@ function App() {
                     <Route path = "/login">
                         <LoginPage setWriter = {setUser}></LoginPage>
                     </Route>
-                    <Route path = "/writerDashboard">
+                    <Route path = "/writer/:penName">
                         <WriterDashboard></WriterDashboard>
                     </Route>
                     <Route path="/series/:seriesId">
