@@ -43,10 +43,20 @@ function SubscribeModal(props) {
     }
 
     const handleSave = () => {
-        SubscriptionApi.postNewSubscription(subscription).then(() => {
-            toast.success("Subscribed!");
-        });
-        handleClose();
+        if(validateEmail(subscription.subscriberEmail)){
+            SubscriptionApi.postNewSubscription(subscription).then(() => {
+                toast.success("Subscribed!");
+            });
+            handleClose();
+        }
+        else{
+            toast.error("Email not valid");
+        }
+    }
+
+    function validateEmail(email) {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
     }
 
     return(
