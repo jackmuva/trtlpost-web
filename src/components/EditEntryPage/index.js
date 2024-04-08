@@ -36,6 +36,9 @@ function EditEntryPage(){
                         },
                         additionalRequestHeaders: {
                             'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+                        },
+                        additionalRequestData: {
+                            'entryId': location.state.entry.entry.entryId
                         }
                     }
                 },
