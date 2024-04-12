@@ -32,7 +32,7 @@ const SeriesInfoPage = () => {
             <div className="flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
                 md:flex-row md:space-y-0 md:mx-52">
                 <div className="px-20 pt-20">
-                    <Series series={series[0]} fromWriterDashboard={false} />
+                    <Series series={series[0]} preview = {true} />
                 </div>
                 <div className="pt-10 mt-0 px-20 mb-0">
                     <h2 className="ml-10">First Entry Preview:</h2>
