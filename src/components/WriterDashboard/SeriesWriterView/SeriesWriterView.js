@@ -52,7 +52,7 @@ const SeriesWriterView = ({ series }) => {
                 </div>
                 <div class="flex">
                     <p class="mr-3 font-sans"> Total Entries: <strong>{series.numEntries}</strong> </p>
-                    <p class="mr-3 font-sans"> Cadence: <strong>Every {series.cadence} days</strong></p>
+                    <p class="mr-3 font-sans"> Cadence: <strong>Every {series.cadence} day(s)</strong></p>
                     {series.tags !== '' &&
                         <p class="mr-3 font-sans"> Tags: {series.tags} </p>}
                 </div>
