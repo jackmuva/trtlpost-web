@@ -1,6 +1,7 @@
 import {Redirect, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import SeriesApi from "../../api/SeriesApi";
+import {toast} from "react-toastify";
 
 
 function NewSeriesPage() {
@@ -77,6 +78,7 @@ function NewSeriesPage() {
     const handleSubmitForEdit = () => {
         console.log(series);
         let ser = {
+            seriesId: series.seriesId,
             datetime: getDateTime(),
             numEntries: series.numEntries,
             title: series.title,
@@ -98,6 +100,7 @@ function NewSeriesPage() {
             setErrorMessage('Title, Summary, and Cadence may not be blank');
         } else {
             SeriesApi.putSeries(ser).then(() => {
+                toast.success("Series successfully edited");
                 setErrorMessage('Edited Successfully');
             });
         }

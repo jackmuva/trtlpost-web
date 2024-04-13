@@ -1,4 +1,3 @@
-import SubscribeModal from "../../SubscribeModal";
 import {NavLink, Link} from 'react-router-dom';
 import React from "react";
 import SeriesApi from "../../../api/SeriesApi";
@@ -42,7 +41,7 @@ const SeriesWriterView = ({ series }) => {
         <div class="grid grid-cols-4 border-b-2 border-stone-200">
             <div class="p-1 m-0 col-span-3">
                 <div class = "flex-auto">
-                    <NavLink to={{pathname:'/editSeries', state: {series: {series}}}} class="mb-0 font-sans text-4xl font-bold hover:text-blue-300">
+                    <NavLink to={{pathname:'/editSeries', state: {series: {series}}}} class="mb-0 font-sans text-4xl font-bold text-blue-800 hover:text-blue-300">
                         {series.title}
                     </NavLink>
                     <h3 class="text-lg ml-3 my-0 font-sans text-base"> Written By: {series.penName}</h3>
@@ -64,14 +63,16 @@ const SeriesWriterView = ({ series }) => {
                         <span class="ml-1 font-medium text-gray-900 dark:text-gray-300">Publish</span>
                     </label>
                 </div>
-                <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
-                    <NavLink class = "text-xl" to={{
-                        pathname: `${series.penName}/editSeriesDetails/${series.seriesId}`,
-                        state: {type:'edit', series: {series}}
-                    }}>
-                        Edit Series Details
-                    </NavLink>
-                </button>
+                <div>
+                    <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-900">
+                        <NavLink class = "text-xl" to={{
+                            pathname: `${series.penName}/editSeriesDetails/${series.seriesId}`,
+                            state: {type:'edit', series: {series}}
+                        }}>
+                            Edit Series Details
+                        </NavLink>
+                    </button>
+                </div>
                 <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
                     <NavLink class = "text-xl" to={{pathname: '/deleteConfirmation', state: {type: 'series', obj: { series }}}}>
                         Delete Series
