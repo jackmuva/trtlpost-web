@@ -4,6 +4,8 @@ import SeriesApi from "../../api/SeriesApi";
 import {NavLink, useParams} from 'react-router-dom';
 import SeriesPageWriterView from "./SeriesPageWriterView/SeriesPageWriterView";
 import SeriesPage from "../SeriesPage/series-page";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPenNib} from "@fortawesome/free-solid-svg-icons";
 
 
 function WriterDashboard (){
@@ -34,28 +36,22 @@ function WriterDashboard (){
     if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
         return (
             <div>
-                <div className="m-4">
-                    <aside id="default-sidebar"
-                           className="fixed top-0 left-0 z-40 w-12 h-screen transition-transform -translate-x-full sm:translate-x-0"
-                           aria-label="Sidebar">
-                        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-200 dark:bg-gray-800">
-                            <ul className="space-y-2 font-medium">
-                                <li>
-                                    <NavLink class="ms-3"
-                                             to={{
-                                                 pathname: `${penName}/newSeries`,
-                                                 state: {type: 'create', writer: {writer}}
-                                             }}>
-                                        Create New Series
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <span class="ms-3"> hi </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </aside>
-                </div>
+                <aside class="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0 bg-gradient-to-t from-gray-200">
+                    <div className="h-full px-3 overflow-y-auto">
+                        <ul className="space-y-2 font-medium">
+                            <li class = "hover:bg-gray-200 rounded-xl p-4">
+                                <FontAwesomeIcon icon={faPenNib} />
+                                <NavLink class="ms-3 text-xl"
+                                         to={{
+                                             pathname: `${penName}/newSeries`,
+                                             state: {type: 'create', writer: {writer}}
+                                         }}>
+                                    Create New Series
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
                 <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
             </div>
         );

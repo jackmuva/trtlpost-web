@@ -85,6 +85,8 @@ Everything on there will be allowed to be got. Example:
 
 background: url('http://localhost:8080/waw.png');
 
+4) If tailwind classes are not being import correctly, delete the tailwind config file and run `npx tailwindcss init`
+
 ## For Docker
 1) Run `docker build -t trtlpost-web:latest .` to build project
 2) Run `docker run -p 3000:80 trtlpost-web:latest` to run on port 3000
