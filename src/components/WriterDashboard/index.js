@@ -35,13 +35,26 @@ function WriterDashboard (){
         return (
             <div>
                 <div className="m-4">
-                    <NavLink class="px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800"
-                             to={{
-                                 pathname: `${penName}/newSeries`,
-                                 state: {type: 'create', writer: {writer}}
-                             }}>
-                        Create New Series
-                    </NavLink>
+                    <aside id="default-sidebar"
+                           className="fixed top-0 left-0 z-40 w-12 h-screen transition-transform -translate-x-full sm:translate-x-0"
+                           aria-label="Sidebar">
+                        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-200 dark:bg-gray-800">
+                            <ul className="space-y-2 font-medium">
+                                <li>
+                                    <NavLink class="ms-3"
+                                             to={{
+                                                 pathname: `${penName}/newSeries`,
+                                                 state: {type: 'create', writer: {writer}}
+                                             }}>
+                                        Create New Series
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <span class="ms-3"> hi </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
                 </div>
                 <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
             </div>
