@@ -122,7 +122,7 @@ function EditEntryPage(){
                 </div>
             </aside>
             <div className="pl-20 flex items-center justify-center">
-                <div class="p-6 flex-col w-1/2 shadow-2xl rounded-2xl">
+                <div class="p-6 mb-6 flex-col w-1/2 shadow-2xl rounded-2xl">
                     <div id='editorjs'></div>
                 </div>
             </div>
