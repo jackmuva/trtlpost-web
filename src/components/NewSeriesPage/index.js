@@ -127,7 +127,7 @@ function NewSeriesPage() {
                            placeholder="Summary" defaultValue = {series?.summary}/>
                     <input type="text" id="tags" class="h-1 w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                            placeholder="Any keyword you'd want your series to be searchable for (separate words with a comma)"
-                            value = {series?.tags}/>
+                            defaultValue = {series?.tags}/>
                     <div>
                         <p className="mb-2 max-2-sm font-sans font-light text-gray-600">
                             Specify number of days that subscribers will wait between emails

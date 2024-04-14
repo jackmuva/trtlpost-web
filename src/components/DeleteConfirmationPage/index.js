@@ -10,7 +10,6 @@ const DeleteConfirmationPage = () => {
     const obj = location.state.obj;
 
     const decrementSeries = async() => {
-
         getSeriesById(obj.entry.seriesId).then((data) => {
             let series = data[0];
             series.numEntries = series.numEntries - 1;
