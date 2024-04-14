@@ -4,7 +4,7 @@ function Header() {
     let writerUrl = "/writer/" + sessionStorage.getItem("penName");
     return (
         <div className="mx-auto">
-            <header className="flex justify-between items-center sticky top-0 z-10 py-10 bg-gradient-to-b from-blue-300">
+            <header className="flex justify-between items-center sticky fixed top-0 z-50 py-10 bg-gradient-to-b from-blue-300">
                 <div className="flex flex-shrink-0 ml-6 cursor-pointer">
                     <a className="flex flex-row text-5xl font-extrabold font-sans text-indigo-700 hover:text-blue-300"
                        href="/">

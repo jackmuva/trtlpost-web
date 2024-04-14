@@ -9,6 +9,8 @@ import SeriesApi from "../../api/SeriesApi";
 import edjsHTML from "editorjs-html";
 import {toast} from "react-toastify";
 import EditorJsApi from "../../api/EditorJsApi";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleLeft, faFloppyDisk, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
 function EditEntryPage(){
     const location = useLocation();
@@ -97,17 +99,29 @@ function EditEntryPage(){
 
     return (
         <div>
-            <div className="flex sticky top-2 flex-col">
-                <NavLink class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit"
-                         onClick={() => handleSubmit()} to={{pathname: '/editSeries', state: {series: {series}}}}>
-                    Return to Entries
-                </NavLink>
-                <button class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-green-800 hover:bg-green-950 max-w-fit"
-                        type="submit" onClick={() => handleSubmit()}>
-                    Save Entry
-                </button>
-            </div>
-            <div className="flex items-center justify-center">
+            <aside
+                className="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0 bg-gradient-to-t from-gray-200">
+                <div className="h-full px-3 overflow-y-auto">
+                    <ul className="space-y-2 font-medium">
+                        <li className="hover:bg-gray-200 rounded-xl p-4">
+                            <FontAwesomeIcon icon={faFloppyDisk} />
+                            <button
+                                className="pl-2 text-xl"
+                                type="submit" onClick={() => handleSubmit()}>
+                                Save Entry
+                            </button>
+                        </li>
+                        <li className="hover:bg-gray-200 rounded-xl p-4">
+                            <FontAwesomeIcon icon={faCircleLeft} />
+                            <NavLink class="pl-2 text-xl"
+                                     onClick={() => handleSubmit()} to={{pathname: '/editSeries', state: {series: {series}}}}>
+                                Return to Entries
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <div className="pl-20 flex items-center justify-center">
                 <div class="p-6 flex-col w-1/2 shadow-2xl rounded-2xl">
                     <div id='editorjs'></div>
                 </div>

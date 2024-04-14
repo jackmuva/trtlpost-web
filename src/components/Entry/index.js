@@ -42,25 +42,26 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
         return (
             <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
                 <div className="p-1 m-0 col-span-3">
-                    <h2 class="mb-0 font-sans text-2xl font-bold">{entry.title}</h2>
+                    <NavLink class="mb-0 font-sans text-2xl font-bold text-blue-800 hover:text-blue-300"
+                             to={{pathname: '/editEntry', state: {entry: {entry}}}}>
+                        {entry.title}
+                    </NavLink>
                     <h3 class="ml-3 my-0 font-sans text-base"> Order: {entry.orderNum}</h3>
                 </div>
                 {/*TODO: See if I can display entry content*/}
                 <div class="col-span-1 text-center flex flex-col">
-                    <button onClick={() => toggleEditable()} type="submit" class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">
-                        Change title and order
-                    </button>
-                    {sessionStorage.getItem("jwt") !== null &&
-                        <NavLink class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-800"
-                                 to={{pathname: '/editEntry', state: {entry: {entry}}}}>
-                            Edit Content
-                        </NavLink>
-                    }
-                    <button className="my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
-                        <NavLink to={{pathname: '/deleteConfirmation', state: {type: 'entry', obj: { entry }}}}>
-                            Delete Entry
-                        </NavLink>
-                    </button>
+                    <div>
+                        <button onClick={() => toggleEditable()} type="submit" class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-900">
+                            Change title and order
+                        </button>
+                    </div>
+                    <div>
+                        <button className="my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
+                            <NavLink to={{pathname: '/deleteConfirmation', state: {type: 'entry', obj: { entry }}}}>
+                                Delete Entry
+                            </NavLink>
+                        </button>
+                    </div>
                 </div>
             </div>
         );

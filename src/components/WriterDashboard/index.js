@@ -4,6 +4,8 @@ import SeriesApi from "../../api/SeriesApi";
 import {NavLink, useParams} from 'react-router-dom';
 import SeriesPageWriterView from "./SeriesPageWriterView/SeriesPageWriterView";
 import SeriesPage from "../SeriesPage/series-page";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPenNib} from "@fortawesome/free-solid-svg-icons";
 
 
 function WriterDashboard (){
@@ -34,15 +36,22 @@ function WriterDashboard (){
     if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
         return (
             <div>
-                <div className="m-4">
-                    <NavLink class="px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800"
-                             to={{
-                                 pathname: `${penName}/newSeries`,
-                                 state: {type: 'create', writer: {writer}}
-                             }}>
-                        Create New Series
-                    </NavLink>
-                </div>
+                <aside class="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0 bg-gradient-to-t from-gray-200">
+                    <div className="h-full px-3 overflow-y-auto">
+                        <ul className="space-y-2 font-medium">
+                            <li class = "hover:bg-gray-200 rounded-xl p-4">
+                                <FontAwesomeIcon icon={faPenNib} />
+                                <NavLink class="ms-3 text-xl"
+                                         to={{
+                                             pathname: `${penName}/newSeries`,
+                                             state: {type: 'create', writer: {writer}}
+                                         }}>
+                                    Create New Series
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
                 <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
             </div>
         );
