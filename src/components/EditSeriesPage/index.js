@@ -1,4 +1,4 @@
-import {NavLink, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EntryApi from "../../api/EntryApi";
 import Entry from "../Entry";
