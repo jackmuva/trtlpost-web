@@ -21,7 +21,7 @@ const AboutPage = () => {
                         Readers after subscribing will receive the series in its entirety, from the first entry to
                         the last one.
                         <br/><br/>
-                        If you are a reader, no need to make an account. Feel free to subscribe to a series just by putting
+                        <b>If you are a reader</b>, no need to make an account. Feel free to subscribe to a series just by putting
                         in your email. If you are looking to write an email series, sign up for an account!
                         <br/><br/>
                     </p>
@@ -46,7 +46,7 @@ const AboutPage = () => {
                         <br/><br/>
                         Email Series are a way for them to write a newsletter that readers can receive with a clear beginning
                         and end. This is also great for readers because they can receive a series in its entirety even if they
-                        subscribed months or years before the series' inception.
+                        subscribed months or years after the series' inception.
                     </p>
                     <h3 className="font-sans text-3xl font-bold mb-0 mt-4 text-blue-600">
                         A slower more intentional reading experience
