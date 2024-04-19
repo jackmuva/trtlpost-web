@@ -102,6 +102,10 @@ function NewSeriesPage() {
         ser.cadence = document.getElementById("cadence").value;
         if (ser.title === '' || ser.summary === '' || ser.cadence === '') {
             setErrorMessage('Title, Summary, and Cadence may not be blank');
+        } else if (ser.title.length >= 100){
+            setErrorMessage('Title cannot exceed 100 characters');
+        } else if (ser.summary.length >= 500){
+            setErrorMessage('Title cannot exceed 500 characters');
         } else {
             SeriesApi.putSeries(ser).then(() => {
                 toast.success("Series successfully edited");
