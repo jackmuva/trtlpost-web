@@ -8,6 +8,10 @@ function NewSeriesPage() {
     const location = useLocation();
     const [series, setSeries] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null)
+    let cadences = [];
+    for (var i = 1; i <= 30; i++) {
+        cadences.push(i);
+    }
 
     useEffect(() => {
         const fetchSeries = async() => {
@@ -132,10 +136,9 @@ function NewSeriesPage() {
                         <p className="mb-2 max-2-sm font-sans font-light text-gray-600">
                             Specify number of days that subscribers will wait between emails
                         </p>
-                        <input type="number" id="cadence"
-                               className="h-1 p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
-                               min="1" max="30"
-                                defaultValue = {series?.cadence}/>
+                        <select id="cadence" className="p-4 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light">
+                            {cadences.map((num) => <option value = {num}>{num}</option>)}
+                        </select>
                     </div>
                     {errorMessage && <div class="text-red-700 my-2"> {errorMessage} </div>}
                     <div>
