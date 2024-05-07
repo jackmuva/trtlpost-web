@@ -48,7 +48,6 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
                     </NavLink>
                     <h3 class="ml-3 my-0 font-sans text-base"> Order: {entry.orderNum}</h3>
                 </div>
-                {/*TODO: See if I can display entry content*/}
                 <div class="col-span-1 text-center flex flex-col">
                     <div>
                         <button onClick={() => toggleEditable()} type="submit" class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-900">
