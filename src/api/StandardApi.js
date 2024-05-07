@@ -74,3 +74,6 @@ export default class StandardApi {
         });
     }
 }
+
+// TODO: add icons to edit and delete buttons
+// TODO: add tooltip or popups when hovering to help with navigation
