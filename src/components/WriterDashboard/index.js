@@ -6,12 +6,14 @@ import SeriesPageWriterView from "./SeriesPageWriterView/SeriesPageWriterView";
 import SeriesPage from "../SeriesPage/series-page";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPenNib} from "@fortawesome/free-solid-svg-icons";
+import PaginationBar from "../PaginationBar";
 
 
 function WriterDashboard (){
     const { penName } = useParams();
     const [writer, setWriter] = useState([]);
     const [series, setSeries] = useState([]);
+    const [pageNum, setPageNum] = useState(0);
 
     useEffect(() => {
         const fetchWriter = async() => {
@@ -24,14 +26,12 @@ function WriterDashboard (){
 
     useEffect(() => {
         const fetchSeries = async(name) => {
-            const rsp = SeriesApi.getSeriesByWriter(name);
+            const rsp = SeriesApi.getSeriesByWriter(name, pageNum);
             const wrSeries = await rsp;
             setSeries(wrSeries);
         }
-        if(writer.length !== 0){
-            fetchSeries(writer[0].penName)
-        }
-    }, [writer])
+        fetchSeries(penName)
+    }, [pageNum])
 
     if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
         return (
@@ -53,6 +53,11 @@ function WriterDashboard (){
                     </div>
                 </aside>
                 <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
+                <div className="flex flex-col w-screen items-center text-center">
+                    <PaginationBar page = {pageNum} setPage = {setPageNum} searchTerm = ""
+                                   primaryApi={(page) => { return SeriesApi.getSeriesByWriter(penName, page)}}>
+                    </PaginationBar>
+                </div>
             </div>
         );
     } else {

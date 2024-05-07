@@ -1,7 +1,8 @@
 import SeriesApi from "../../api/SeriesApi";
 import {useEffect, useState} from "react";
 
-const PaginationBar = ({ page, setPage, searchPageNum, setSearchPageNum, searchTerm }) => {
+const PaginationBar = ({ page, setPage, searchPageNum, setSearchPageNum, searchTerm,
+                       primaryApi, searchApi}) => {
     const [nextPage, setNextPage] = useState(false);
 
     useEffect(() => {
@@ -20,12 +21,12 @@ const PaginationBar = ({ page, setPage, searchPageNum, setSearchPageNum, searchT
     const nextPageExists = () => {
         if(searchTerm !== ""){
             const searchFunc = (pageNum) => {
-                return SeriesApi.getSeriesByKeyword(searchTerm, pageNum);
+                return searchApi(searchTerm, pageNum);
             }
             return checkNextPage(searchFunc, searchPageNum);
         } else {
             const pageFunc = (pageNum) => {
-                return SeriesApi.getNewestSeries(pageNum);
+                return primaryApi(pageNum);
             }
             return checkNextPage(pageFunc, page);
         }

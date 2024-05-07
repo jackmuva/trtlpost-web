@@ -59,8 +59,8 @@ function NewSeriesPage() {
             summary: null,
             tags: null,
             cadence: null,
-            penName: location.state.writer.writer[0].penName,
-            email: location.state.writer.writer[0].email,
+            penName: location.state.writer.writer.penName,
+            email: location.state.writer.writer.email,
             published: false,
             numAllTimeReaders: 0,
             numCurrentReaders: 0
@@ -115,7 +115,7 @@ function NewSeriesPage() {
     }
 
     if (errorMessage === 'Created Successfully') {
-        let redUrl = '/writer/' + location.state.writer.writer[0].penName;
+        let redUrl = '/writer/' + location.state.writer.writer.penName;
         return <Redirect to = {redUrl} />
     } else if (errorMessage === 'Edited Successfully') {
         let redUrl = '/writer/' + series.penName;

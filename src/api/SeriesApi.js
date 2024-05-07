@@ -18,8 +18,8 @@ class SeriesApi extends StandardApi{
         return this.get(`/api/series/getNewest?page=${page}`).then(response => response.json());
     }
 
-    getSeriesByWriter(writer){
-        return this.get(`/api/series/writer/${writer}`).then(response => response.json());
+    getSeriesByWriter(writer, page){
+        return this.get(`/api/series/writer/${writer}?page=${page}`).then(response => response.json());
     }
     getSeriesByTag(tag){
         return this.get(`/api/series/tag/${tag}`).then(response => response.json());
