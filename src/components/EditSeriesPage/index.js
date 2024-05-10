@@ -5,21 +5,25 @@ import Entry from "../Entry";
 import SeriesApi from "../../api/SeriesApi";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleLeft, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
+import PaginationBar from "../PaginationBar";
 
 function EditSeriesPage(){
     const [entries, setEntries] = useState([]);
     const [edited, setEdited] = useState(false);
+    const [pageNum, setPageNum] = useState(0);
+    const [largestEntry, setLargestEntry] = useState(1);
     const location = useLocation();
 
     useEffect(() =>{
         const fetchEntries = async() => {
-            const rsp = EntryApi.getEntriesBySeriesId(location.state.series.series.seriesId);
+            const rsp = EntryApi.getEntriesBySeriesId(location.state.series.series.seriesId, pageNum);
             const entryRes = await rsp;
             setEntries(entryRes);
         }
         fetchEntries();
+        setLargestEntry(location.state.series.series.numEntries);
         setEdited(false);
-    }, [edited]);
+    }, [edited, pageNum]);
 
     const createEntry = (maxOrder) => {
         let entry = {
@@ -75,12 +79,10 @@ function EditSeriesPage(){
                 </div>
             </div>);
     } else{
-        let maxOrder = 1;
-        maxOrder = entries.sort(function(a, b){return a.orderNum - b.orderNum})[entries.length - 1].orderNum;
         const entryItems = entries.sort(function(a, b){return a.orderNum - b.orderNum}).map(entry => {
             return (
                 <div>
-                    <Entry entry = {entry} maxEntry = {maxOrder} setEdited = {setEdited}></Entry>
+                    <Entry entry = {entry} maxEntry = {largestEntry} setEdited = {setEdited}></Entry>
                 </div>);
         });
         return(
@@ -91,7 +93,7 @@ function EditSeriesPage(){
                         <ul className="space-y-2 font-medium">
                             <li className="hover:bg-gray-200 rounded-xl p-4">
                                 <FontAwesomeIcon icon={faPenToSquare}/>
-                                <button class = "pl-2 text-xl" onClick={() => createEntry(maxOrder + 1)} type="submit">
+                                <button class = "pl-2 text-xl" onClick={() => createEntry(largestEntry + 1)} type="submit">
                                     Create New Entry
                                 </button>
                             </li>
@@ -104,6 +106,11 @@ function EditSeriesPage(){
                 </aside>
                 <div className="pl-20 flex flex-col md:mx-52 flex flex-col my-3 space-y-0 mx-6">
                     { entryItems }
+                </div>
+                <div className="flex flex-col w-screen items-center text-center">
+                    <PaginationBar page = {pageNum} setPage = {setPageNum} searchTerm = ""
+                                   primaryApi={(page) => { return EntryApi.getEntriesBySeriesId(location.state.series.series.seriesId, page)}}>
+                    </PaginationBar>
                 </div>
             </div>
         );
