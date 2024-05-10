@@ -21,7 +21,7 @@ const AboutPage = () => {
                         Readers after subscribing will receive the series in its entirety, from the first entry to
                         the last one.
                         <br/><br/>
-                        If you are a reader, no need to make an account. Feel free to subscribe to a series just by putting
+                        <b>If you are a reader, no need to make an account.</b> Feel free to subscribe to a series just by putting
                         in your email. If you are looking to write an email series, sign up for an account!
                         <br/><br/>
                     </p>
