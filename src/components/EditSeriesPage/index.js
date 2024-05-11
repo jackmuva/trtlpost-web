@@ -20,9 +20,10 @@ function EditSeriesPage(){
             const entryRes = await rsp;
             setEntries(entryRes);
         }
-        fetchEntries();
-        setLargestEntry(location.state.series.series.numEntries);
-        setEdited(false);
+        fetchEntries().then(() => {
+            setLargestEntry(location.state.series.series.numEntries);
+            setEdited(false);
+        });
     }, [edited, pageNum]);
 
     const createEntry = (maxOrder) => {
@@ -35,19 +36,21 @@ function EditSeriesPage(){
             email: location.state.series.series.email
         }
         EntryApi.postNewEntry(entry).then(() => {
-            incrementSeries();
-            setEntries([...entries, entry]);
-            setEdited(true);
+            incrementSeries().then(() => {
+                setEntries([...entries, entry]);
+                setEdited(true);
+                setPageNum(pageNum);
+            });
         });
     };
 
-    const incrementSeries = () => {
+    const incrementSeries = async() => {
         let series = location.state.series.series;
         series.numEntries = series.numEntries + 1;
-        const updateSeries = async (ser) => {
+        const updateSeries = async(ser) => {
             await SeriesApi.putSeries(ser);
         }
-        updateSeries(series);
+        await updateSeries(series);
     };
 
     let writerUrl = "/writer/" + sessionStorage.getItem("penName");
