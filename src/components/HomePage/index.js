@@ -30,7 +30,10 @@ function HomePage(){
             <SeriesPage allSeries = {searchResults}></SeriesPage>
             <div className="flex flex-col w-screen items-center text-center">
                 <PaginationBar page = {pageNum} setPage = {setPageNum} searchPageNum={searchPageNum}
-                               setSearchPageNum={setSearchPageNum} searchTerm = {searchTerm}></PaginationBar>
+                               setSearchPageNum={setSearchPageNum} searchTerm = {searchTerm}
+                               searchApi={(searchTerm, pageNum) => { return SeriesApi.getSeriesByKeyword(searchTerm, pageNum)}}
+                               primaryApi={(page) => {return SeriesApi.getNewestSeries(page)}}>
+                </PaginationBar>
             </div>
         </div>
     )
