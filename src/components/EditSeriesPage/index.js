@@ -11,7 +11,7 @@ function EditSeriesPage(){
     const [entries, setEntries] = useState([]);
     const [edited, setEdited] = useState(false);
     const [pageNum, setPageNum] = useState(0);
-    const [largestEntry, setLargestEntry] = useState(1);
+    const [series, setSeries] = useState(null);
     const location = useLocation();
 
     useEffect(() =>{
@@ -20,18 +20,27 @@ function EditSeriesPage(){
             const entryRes = await rsp;
             setEntries(entryRes);
         }
-        fetchEntries().then(() => {
-            setLargestEntry(location.state.series.series.numEntries);
-            setEdited(false);
-        });
+        fetchEntries();
+        setEdited(false);
     }, [edited, pageNum]);
 
-    const createEntry = (maxOrder) => {
+    useEffect(() => {
+        console.log("yes");
+        const fetchSeries = async() => {
+            const rsp = SeriesApi.getSeriesById(location.state.series.series.seriesId);
+            const ser = await rsp;
+            setSeries(ser);
+        }
+        fetchSeries();
+    }, []);
+
+    const createEntry = () => {
+        console.log(series.numEntries);
         let entry = {
             seriesId: location.state.series.series.seriesId,
             entryJson: "{\"blocks\":[{\"type\":\"paragraph\",\"data\":{\"text\":\"Start Writing\"}}],\"version\":\"2.28.0\"}",
             entryHtml: "",
-            orderNum: maxOrder,
+            orderNum: series.numEntries + 1,
             title: "New Entry",
             email: location.state.series.series.email
         }
@@ -39,20 +48,20 @@ function EditSeriesPage(){
             incrementSeries().then(() => {
                 setEntries([...entries, entry]);
                 setEdited(true);
-                setPageNum(pageNum);
             });
         });
     };
 
     const incrementSeries = async() => {
-        let series = location.state.series.series;
-        series.numEntries = series.numEntries + 1;
+        setSeries({...series, numEntries: series.numEntries + 1});
         const updateSeries = async(ser) => {
             await SeriesApi.putSeries(ser);
         }
         await updateSeries(series);
     };
 
+    console.log(location.state.series.series.seriesId);
+    console.log(series);
     let writerUrl = "/writer/" + sessionStorage.getItem("penName");
     if(entries.length === 0){
         return (
@@ -63,7 +72,7 @@ function EditSeriesPage(){
                         <ul className="space-y-2 font-medium">
                             <li className="hover:bg-gray-200 rounded-xl p-4">
                                 <FontAwesomeIcon icon={faPenToSquare}/>
-                                <button className="pl-2 text-xl" onClick={() => createEntry(1)}
+                                <button className="pl-2 text-xl" onClick={() => createEntry()}
                                         type="submit">
                                     Create New Entry
                                 </button>
@@ -85,7 +94,7 @@ function EditSeriesPage(){
         const entryItems = entries.sort(function(a, b){return a.orderNum - b.orderNum}).map(entry => {
             return (
                 <div>
-                    <Entry entry = {entry} maxEntry = {largestEntry} setEdited = {setEdited}></Entry>
+                    <Entry entry = {entry} maxEntry = {series.numEntries} setEdited = {setEdited}></Entry>
                 </div>);
         });
         return(
@@ -96,7 +105,7 @@ function EditSeriesPage(){
                         <ul className="space-y-2 font-medium">
                             <li className="hover:bg-gray-200 rounded-xl p-4">
                                 <FontAwesomeIcon icon={faPenToSquare}/>
-                                <button class = "pl-2 text-xl" onClick={() => createEntry(largestEntry + 1)} type="submit">
+                                <button class = "pl-2 text-xl" onClick={() => createEntry()} type="submit">
                                     Create New Entry
                                 </button>
                             </li>
