@@ -17,7 +17,7 @@ function NewSeriesPage() {
         const fetchSeries = async() => {
             const rsp = SeriesApi.getSeriesById(location.state.series.series.seriesId);
             const ser = await rsp;
-            setSeries(ser[0]);
+            setSeries(ser);
         }
         if(location.state.type === 'edit'){
             fetchSeries();
