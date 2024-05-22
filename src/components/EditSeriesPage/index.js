@@ -8,16 +8,12 @@ import {faCircleLeft, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 import PaginationBar from "../PaginationBar";
 
 function EditSeriesPage(){
-    // const [entries, setEntries] = useState([]);
     const [edited, setEdited] = useState(false);
-
     const [data, setData] = useState({
         entries: [],
         series: null
     })
-
     const [pageNum, setPageNum] = useState(0);
-    // const [series, setSeries] = useState(null);
     const location = useLocation();
 
     useEffect(() =>{
@@ -31,13 +27,11 @@ function EditSeriesPage(){
             const ser = await rsp;
             return ser;
         }
-        console.log("new data");
         let newData = {};
         fetchEntries().then((entries) => {
             newData.entries = entries;
             fetchSeries().then((series) => {
                 newData.series = series;
-                console.log(newData);
                 setData(newData);
                 setEdited(false);
             })
@@ -56,7 +50,11 @@ function EditSeriesPage(){
         }
         EntryApi.postNewEntry(entry).then(() => {
             incrementSeries().then(() => {
-                setEdited(true);
+                if(data.series.numEntries % 10 === 0){
+                    setPageNum(pageNum + 1);
+                }else{
+                    setEdited(true);
+                }
             });
         });
     };
@@ -69,7 +67,6 @@ function EditSeriesPage(){
         await updateSeries(updSeries);
     };
 
-    console.log(data.entries);
     let writerUrl = "/writer/" + sessionStorage.getItem("penName");
     if(data.entries.length === 0){
         return (
