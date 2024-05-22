@@ -11,7 +11,7 @@ const DeleteConfirmationPage = () => {
 
     const decrementSeries = async() => {
         getSeriesById(obj.entry.seriesId).then((data) => {
-            let series = data[0];
+            let series = data;
             series.numEntries = series.numEntries - 1;
             const updateSeries = async (ser) => {
                 await SeriesApi.putSeries(ser);

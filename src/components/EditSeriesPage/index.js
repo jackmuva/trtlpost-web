@@ -1,4 +1,4 @@
-import {NavLink, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EntryApi from "../../api/EntryApi";
 import Entry from "../Entry";
@@ -8,62 +8,70 @@ import {faCircleLeft, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 import PaginationBar from "../PaginationBar";
 
 function EditSeriesPage(){
-    const [entries, setEntries] = useState([]);
+    // const [entries, setEntries] = useState([]);
     const [edited, setEdited] = useState(false);
+
+    const [data, setData] = useState({
+        entries: [],
+        series: null
+    })
+
     const [pageNum, setPageNum] = useState(0);
-    const [series, setSeries] = useState(null);
+    // const [series, setSeries] = useState(null);
     const location = useLocation();
 
     useEffect(() =>{
         const fetchEntries = async() => {
             const rsp = EntryApi.getEntriesBySeriesId(location.state.series.series.seriesId, pageNum);
             const entryRes = await rsp;
-            setEntries(entryRes);
+            return entryRes;
         }
-        fetchEntries();
-        setEdited(false);
-    }, [edited, pageNum]);
-
-    useEffect(() => {
-        console.log("yes");
         const fetchSeries = async() => {
             const rsp = SeriesApi.getSeriesById(location.state.series.series.seriesId);
             const ser = await rsp;
-            setSeries(ser);
+            return ser;
         }
-        fetchSeries();
-    }, []);
+        console.log("new data");
+        let newData = {};
+        fetchEntries().then((entries) => {
+            newData.entries = entries;
+            fetchSeries().then((series) => {
+                newData.series = series;
+                console.log(newData);
+                setData(newData);
+                setEdited(false);
+            })
+        })
+
+    }, [edited, pageNum]);
 
     const createEntry = () => {
-        console.log(series.numEntries);
         let entry = {
             seriesId: location.state.series.series.seriesId,
             entryJson: "{\"blocks\":[{\"type\":\"paragraph\",\"data\":{\"text\":\"Start Writing\"}}],\"version\":\"2.28.0\"}",
             entryHtml: "",
-            orderNum: series.numEntries + 1,
+            orderNum: data.series.numEntries + 1,
             title: "New Entry",
             email: location.state.series.series.email
         }
         EntryApi.postNewEntry(entry).then(() => {
             incrementSeries().then(() => {
-                setEntries([...entries, entry]);
                 setEdited(true);
             });
         });
     };
 
     const incrementSeries = async() => {
-        setSeries({...series, numEntries: series.numEntries + 1});
+        let updSeries = {...data.series, numEntries: data.series.numEntries + 1};
         const updateSeries = async(ser) => {
             await SeriesApi.putSeries(ser);
         }
-        await updateSeries(series);
+        await updateSeries(updSeries);
     };
 
-    console.log(location.state.series.series.seriesId);
-    console.log(series);
+    console.log(data.entries);
     let writerUrl = "/writer/" + sessionStorage.getItem("penName");
-    if(entries.length === 0){
+    if(data.entries.length === 0){
         return (
             <div>
                 <aside
@@ -91,10 +99,10 @@ function EditSeriesPage(){
                 </div>
             </div>);
     } else{
-        const entryItems = entries.sort(function(a, b){return a.orderNum - b.orderNum}).map(entry => {
+        const entryItems = data.entries.sort(function(a, b){return a.orderNum - b.orderNum}).map(entry => {
             return (
                 <div>
-                    <Entry entry = {entry} maxEntry = {series.numEntries} setEdited = {setEdited}></Entry>
+                    <Entry entry = {entry} maxEntry = {data.series.numEntries} setEdited = {setEdited}></Entry>
                 </div>);
         });
         return(
