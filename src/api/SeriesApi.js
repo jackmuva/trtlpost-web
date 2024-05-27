@@ -21,6 +21,10 @@ class SeriesApi extends StandardApi{
     getSeriesByWriter(writer, page){
         return this.get(`/api/series/writer/${writer}?page=${page}`).then(response => response.json());
     }
+
+    getPublishedSeriesByWriter(writer, page){
+        return this.get(`/api/series/writer/published/${writer}?page=${page}`).then(response => response.json());
+    }
     getSeriesByTag(tag){
         return this.get(`/api/series/tag/${tag}`).then(response => response.json());
     }

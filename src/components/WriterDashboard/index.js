@@ -25,12 +25,22 @@ function WriterDashboard (){
     }, []);
 
     useEffect(() => {
-        const fetchSeries = async(name) => {
+        const fetchAllSeries = async(name) => {
             const rsp = SeriesApi.getSeriesByWriter(name, pageNum);
             const wrSeries = await rsp;
             setSeries(wrSeries);
         }
-        fetchSeries(penName)
+        const fetchPublishedSeries = async(name) => {
+            const rsp = SeriesApi.getPublishedSeriesByWriter(name, pageNum);
+            const wrSeries = await rsp;
+            setSeries(wrSeries);
+        }
+        if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName){
+            fetchAllSeries(penName);
+        } else {
+            fetchPublishedSeries(penName);
+        }
+
     }, [pageNum])
 
     if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
