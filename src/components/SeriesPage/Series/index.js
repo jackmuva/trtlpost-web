@@ -1,5 +1,4 @@
 import SubscribeModal from "../../SubscribeModal";
-import {Link, NavLink} from 'react-router-dom';
 import React from "react";
 
 const Series = ({ series , preview}) => {

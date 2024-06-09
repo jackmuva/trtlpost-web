@@ -1,5 +1,5 @@
-// const apiUrl = "http://localhost:5000";
-const apiUrl = "https://trtlmail-rest.com"
+const apiUrl = "http://localhost:5000";
+// const apiUrl = "https://trtlmail-rest.com"
 
 export default class StandardApi {
     retrieveApiUrl(){
@@ -73,7 +73,22 @@ export default class StandardApi {
             body: JSON.stringify(payload)
         });
     }
-}
 
-// TODO: add icons to edit and delete buttons
-// TODO: add tooltip or popups when hovering to help with navigation
+    put(url, payload){
+        return fetch(apiUrl.concat(url), {
+            method: 'PUT',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+    }
+
+    put(url){
+        console.log("in the put method")
+        return fetch(apiUrl.concat(url), {
+            method: 'PUT'
+        });
+    }
+}
