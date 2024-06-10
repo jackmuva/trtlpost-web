@@ -86,7 +86,6 @@ export default class StandardApi {
     }
 
     put(url){
-        console.log("in the put method")
         return fetch(apiUrl.concat(url), {
             method: 'PUT'
         });
