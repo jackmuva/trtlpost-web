@@ -93,8 +93,7 @@ background: url('http://localhost:8080/waw.png');
 
 ## Deploying to AWS
 We are using cloudfront as our CDN with a single page site in S3
-1) Run the build script with `npm run build`
-2) Run the deploy.sh script to sync S3 bucket and invalidate cache in Cloudfront
+1) Run the deploy.sh script to sync S3 bucket and invalidate cache in Cloudfront
 
 ### For configuring Cloudfront
 - Make sure "Alternate domain name" is set to the domain you want in Route53

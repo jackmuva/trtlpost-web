@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Build prod optimized code:"
+npm run build
+
 echo "Syncing S3 with build"
 aws s3 --region 'us-east-1' sync ./build 's3://trtlmail-cloudfront/'
 echo "Successfully synced"
