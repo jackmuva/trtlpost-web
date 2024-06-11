@@ -1,6 +1,8 @@
 import {NavLink} from 'react-router-dom';
 import React, {useState} from "react";
 import EntryApi from "../../api/EntryApi";
+import {faFeatherPointed, faToilet} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Entry = ({ entry, maxEntry, setEdited}) => {
     const [editable, setEditable] = useState(false);
@@ -51,12 +53,14 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
                 <div class="col-span-1 text-center flex flex-col">
                     <div>
                         <button onClick={() => toggleEditable()} type="submit" class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-900">
+                            <FontAwesomeIcon icon={faFeatherPointed} />
                             Change title and order
                         </button>
                     </div>
                     <div>
                         <button className="my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
-                            <NavLink to={{pathname: '/deleteConfirmation', state: {type: 'entry', obj: { entry }}}}>
+                            <FontAwesomeIcon icon={faToilet} />
+                            <NavLink class = "ml-1" to={{pathname: '/deleteConfirmation', state: {type: 'entry', obj: { entry }}}}>
                                 Delete Entry
                             </NavLink>
                         </button>

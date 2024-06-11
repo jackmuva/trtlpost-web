@@ -6,15 +6,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import SubscriptionApi from "../../api/SubscriptionApi";
 import {toast} from "react-toastify";
+import SeriesApi from "../../api/SeriesApi";
 
 function SubscribeModal(props) {
     const [open, setOpen] = useState(false);
-    const [subscription, setSubscription] = useState({
-        subscriberEmail: '',
-        articleNum: '',
-        sendDate: '',
-        seriesId:''
-    });
+    const [subscription, setSubscription] = useState({});
 
     Date.prototype.addDays = function(days) {
         const date = new Date(this.valueOf());
@@ -45,7 +41,9 @@ function SubscribeModal(props) {
     const handleSave = () => {
         if(validateEmail(subscription.subscriberEmail)){
             SubscriptionApi.postNewSubscription(subscription).then(() => {
-                toast.success("Subscribed!");
+                SeriesApi.incrementCounts(props.series.seriesId).then(() => {
+                    toast.success("Subscribed!");
+                })
             });
             handleClose();
         }

@@ -8,6 +8,10 @@ class SeriesApi extends StandardApi{
     putSeries(series){
         return this.putWithAuth('/api/series/update', series).then(response => response.json());
     }
+
+    incrementCounts(seriesId){
+        return this.put(`/api/series/increment/${seriesId}`);
+    }
     getSeriesById(id){
         return this.get(`/api/series/${id}`).then(response => response.json());
     }

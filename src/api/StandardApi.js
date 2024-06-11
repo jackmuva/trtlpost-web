@@ -73,7 +73,21 @@ export default class StandardApi {
             body: JSON.stringify(payload)
         });
     }
-}
 
-// TODO: add icons to edit and delete buttons
-// TODO: add tooltip or popups when hovering to help with navigation
+    put(url, payload){
+        return fetch(apiUrl.concat(url), {
+            method: 'PUT',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+    }
+
+    put(url){
+        return fetch(apiUrl.concat(url), {
+            method: 'PUT'
+        });
+    }
+}

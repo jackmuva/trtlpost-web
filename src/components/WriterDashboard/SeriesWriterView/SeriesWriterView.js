@@ -2,6 +2,8 @@ import {NavLink, Link} from 'react-router-dom';
 import React from "react";
 import SeriesApi from "../../../api/SeriesApi";
 import {toast} from "react-toastify";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faToilet, faFeatherPointed} from "@fortawesome/free-solid-svg-icons";
 
 const SeriesWriterView = ({ series }) => {
 
@@ -56,6 +58,18 @@ const SeriesWriterView = ({ series }) => {
                     {series.tags !== '' &&
                         <p class="mr-3 font-sans"> Tags: {series.tags} </p>}
                 </div>
+                <div class="flex mb-2">
+                    <div class = "grid grid-cols-2">
+                        <div class = "grid-rows-2 mx-6 mt-4 border-4 border border-solid rounded-lg border-amber-200">
+                            <div class = "flex mt-2 mx-4 text-lg font-sans font-bold"> <p><em>All Time</em> # of Readers: </p></div>
+                            <div class = "flex mx-4 mb-2 mt-2 text-2xl font-sans font-bold">{series.numAllTimeReaders}</div>
+                        </div>
+                        <div className="grid-rows-2 mx-6 mt-4 border-4 border border-solid rounded-lg border-rose-200">
+                            <div className="flex mt-2 mx-4 text-lg font-sans font-bold"><p><em>Current</em> # of Readers:</p></div>
+                            <div className="flex mx-4 mb-2 mt-2 text-2xl font-sans font-bold">{series.numCurrentReaders}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-span-1 text-center">
                 <div class="m-2">
@@ -68,7 +82,8 @@ const SeriesWriterView = ({ series }) => {
                 </div>
                 <div>
                     <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-900">
-                        <NavLink class = "text-xl" to={{
+                        <FontAwesomeIcon icon={faFeatherPointed} />
+                        <NavLink class = "text-xl ml-1" to={{
                             pathname: `${series.penName}/editSeriesDetails/${series.seriesId}`,
                             state: {type:'edit', series: {series}}
                         }}>
@@ -77,7 +92,8 @@ const SeriesWriterView = ({ series }) => {
                     </button>
                 </div>
                 <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
-                    <NavLink class = "text-xl" to={{pathname: '/deleteConfirmation', state: {type: 'series', obj: { series }}}}>
+                    <FontAwesomeIcon icon={faToilet} />
+                    <NavLink class = "text-xl ml-1" to={{pathname: '/deleteConfirmation', state: {type: 'series', obj: { series }}}}>
                         Delete Series
                     </NavLink>
                 </button>
