@@ -8,6 +8,10 @@ class AuthorizationApi extends StandardApi{
     postLogin(user){
         return this.post('/api/auth/login', user).then(response => response.json());
     }
+
+    postResetPassword(email){
+        return this.post(`/api/auth/resetPassword?email=${email}`).then(response => response.json());
+    }
 }
 
 export default new AuthorizationApi();

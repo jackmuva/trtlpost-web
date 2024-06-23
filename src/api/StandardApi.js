@@ -62,6 +62,16 @@ export default class StandardApi {
         });
     }
 
+    post(url){
+        return fetch(apiUrl.concat(url), {
+            method: 'POST',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     putWithAuth(url, payload){
         return fetch(apiUrl.concat(url), {
             method: 'PUT',
