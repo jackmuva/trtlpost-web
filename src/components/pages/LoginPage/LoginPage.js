@@ -43,8 +43,7 @@ function LoginPage({ setWriter }) {
         if(email === "" || email === null){
             setErrorMessage("Please enter email to send password recovery link")
         } else{
-            AuthorizationApi.postResetPassword(email).then((response) => {
-                console.log(response);
+            AuthorizationApi.postResetPassword(email).then(() => {
                 toast.success("Password Recovery Email Sent");
             });
         }
