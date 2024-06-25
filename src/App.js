@@ -15,13 +15,14 @@ const DeleteConfirmationPage = lazy(() => import("./components/pages/DeleteConfi
 const HomePage = lazy(() => import("./components/pages/HomePage"));
 const SeriesInfoPage = lazy(() => import("./components/pages/SeriesInfoPage"));
 const UnsubscribePage = lazy(() => import("./components/pages/UnsubscribePage"));
+const PasswordResetPage = lazy(() => import("./components/pages/PasswordResetPage"));
 
 function App() {
     const [user, setUser] = useState([]);
 
     return (
       <Router>
-        <div class="max-w-full bg-zinc-50 overflow-x-hidden">
+        <div class="max-w-full h-screen bg-zinc-50 overflow-x-hidden">
             <ToastContainer />
             <Header />
             <Suspense fallback={
@@ -32,6 +33,9 @@ function App() {
                 </div>}
             >
                 <Switch>
+                    <Route path = "/changePassword/:token">
+                        <PasswordResetPage></PasswordResetPage>
+                    </Route>
                     <Route path = "/about">
                         <AboutPage></AboutPage>
                     </Route>

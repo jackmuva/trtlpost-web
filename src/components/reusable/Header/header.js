@@ -8,7 +8,7 @@ function Header() {
                 <div className="flex flex-shrink-0 ml-6 cursor-pointer">
                     <a className="flex flex-row text-5xl font-extrabold font-sans text-indigo-700 hover:text-blue-300"
                        href="/">
-                        <img src="images/logo.png" className="w-20 rounded-r-2xl md:block mr-2" alt=""/>
+                        <img src="/images/logo.png" className="w-20 rounded-r-2xl md:block mr-2" alt=""/>
                         TrtlPost
                     </a>
                 </div>

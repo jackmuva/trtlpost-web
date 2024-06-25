@@ -1,5 +1,5 @@
-const apiUrl = "http://localhost:5000";
-// const apiUrl = "https://trtlmail-rest.com"
+// const apiUrl = "http://localhost:5000";
+const apiUrl = "https://trtlmail-rest.com"
 
 export default class StandardApi {
     retrieveApiUrl(){
@@ -62,7 +62,7 @@ export default class StandardApi {
         });
     }
 
-    postSimple(url){
+    postParam(url){
         return fetch(apiUrl.concat(url), {
             method: 'POST',
             headers:{
