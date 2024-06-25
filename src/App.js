@@ -1,27 +1,28 @@
-import Header from "./components/Header/header";
+import Header from "./components/reusable/Header/header";
 import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const AboutPage = lazy(() => import("./components/AboutPage"));
-const SignUpPage = lazy(() => import("./components/SignUpPage"));
-const LoginPage = lazy(() => import("./components/LoginPage/LoginPage"));
-const WriterDashboard = lazy(() => import("./components/WriterDashboard"));
-const EditSeriesPage = lazy(() => import("./components/EditSeriesPage"));
-const EditEntryPage = lazy(() => import("./components/EditEntryPage"));
-const NewSeriesPage = lazy(() => import("./components/NewSeriesPage"));
-const DeleteConfirmationPage = lazy(() => import("./components/DeleteConfirmationPage"));
-const HomePage = lazy(() => import("./components/HomePage"));
-const SeriesInfoPage = lazy(() => import("./components/SeriesInfoPage"));
-const UnsubscribePage = lazy(() => import("./components/UnsubscribePage"));
+const AboutPage = lazy(() => import("./components/pages/AboutPage"));
+const SignUpPage = lazy(() => import("./components/pages/SignUpPage"));
+const LoginPage = lazy(() => import("./components/pages/LoginPage/LoginPage"));
+const WriterDashboard = lazy(() => import("./components/pages/WriterDashboardPage"));
+const EditSeriesPage = lazy(() => import("./components/pages/EditSeriesPage"));
+const EditEntryPage = lazy(() => import("./components/pages/EditEntryPage"));
+const NewSeriesPage = lazy(() => import("./components/pages/NewSeriesPage"));
+const DeleteConfirmationPage = lazy(() => import("./components/pages/DeleteConfirmationPage"));
+const HomePage = lazy(() => import("./components/pages/HomePage"));
+const SeriesInfoPage = lazy(() => import("./components/pages/SeriesInfoPage"));
+const UnsubscribePage = lazy(() => import("./components/pages/UnsubscribePage"));
+const PasswordResetPage = lazy(() => import("./components/pages/PasswordResetPage"));
 
 function App() {
     const [user, setUser] = useState([]);
 
     return (
       <Router>
-        <div class="max-w-full bg-zinc-50 overflow-x-hidden">
+        <div class="max-w-full h-screen bg-zinc-50 overflow-x-hidden">
             <ToastContainer />
             <Header />
             <Suspense fallback={
@@ -32,6 +33,9 @@ function App() {
                 </div>}
             >
                 <Switch>
+                    <Route path = "/changePassword/:token">
+                        <PasswordResetPage></PasswordResetPage>
+                    </Route>
                     <Route path = "/about">
                         <AboutPage></AboutPage>
                     </Route>
