@@ -10,7 +10,7 @@ class AuthorizationApi extends StandardApi{
     }
 
     postResetPassword(email){
-        return this.post(`/api/auth/resetPassword?email=${email}`);
+        return this.postSimple(`/api/auth/resetPassword?email=${email}`);
     }
 }
 

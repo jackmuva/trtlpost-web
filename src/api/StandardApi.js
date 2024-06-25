@@ -62,7 +62,7 @@ export default class StandardApi {
         });
     }
 
-    post(url){
+    postSimple(url){
         return fetch(apiUrl.concat(url), {
             method: 'POST',
             headers:{
@@ -84,7 +84,7 @@ export default class StandardApi {
         });
     }
 
-    put(url, payload){
+    putPayload(url, payload){
         return fetch(apiUrl.concat(url), {
             method: 'PUT',
             headers:{
