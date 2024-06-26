@@ -18,7 +18,7 @@ const SeriesPage = ({ allSeries }) => {
         );
         return (
             <div class = "flex items-center md:mx-52">
-                <div class = "flex flex-col my-3 space-y-0 mx-6 min-w-full">
+                <div class = "flex flex-col my-3 space-y-4 mx-6 min-w-full">
                     {arraySeriesItems}
                 </div>
             </div>
