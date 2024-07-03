@@ -45,7 +45,7 @@ const SeriesInfoPage = () => {
             <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
                     md:flex-row md:space-y-0 md:mx-52">
                 <div className="p-6 md:p-20">
-                    <h1>Series does not exist</h1>
+                    <h1>Email Series does not exist</h1>
                 </div>
             </div>
         );
