@@ -97,7 +97,7 @@ function SignUpPage () {
                     </div>
                 </div>
                 <div>
-                    <img src="images/vanc-lake.png" className="h-full hidden md:block rounded-r-2xl" alt=""/>
+                    <img src="images/vanc-lake.png" className="h-full hidden md:block rounded-r-2xl" alt="Vancouver lake"/>
                 </div>
             </div>);
     }

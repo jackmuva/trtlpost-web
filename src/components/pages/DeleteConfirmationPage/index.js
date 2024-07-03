@@ -68,7 +68,7 @@ const DeleteConfirmationPage = () => {
                 </div>
             </div>
             <div>
-                <img src="images/malu.png" className="h-full hidden md:block rounded-r-2xl" alt=""/>
+                <img src="images/malu.png" className="h-full hidden md:block rounded-r-2xl" alt="woman saying goodbye as you delete your email series"/>
             </div>
         </div>
     );

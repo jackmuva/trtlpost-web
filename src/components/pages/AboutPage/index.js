@@ -15,7 +15,7 @@ const AboutPage = () => {
                         every week, every month, etc).
                     </p>
                     <div class="flex justify-center items-center m-0">
-                        <img src="images/email-series.png" className="rounded-r-2xl md:block" alt=""/>
+                        <img src="images/email-series.png" className="rounded-r-2xl md:block" alt="An example of an email series about health"/>
                     </div>
                     <p className="ml-8 mb-4 max-2-sm font-sans text-xl">
                         Readers after subscribing will receive the series in its entirety, from the first entry to
@@ -34,7 +34,7 @@ const AboutPage = () => {
                         Why TrtlPost?
                     </h2>
                     <div className="flex justify-center items-center m-0">
-                        <img src="images/logo.png" className="rounded-r-2xl md:block" alt=""/>
+                        <img src="images/logo.png" className="rounded-r-2xl md:block" alt="Logo for Trtlpost, a platform for writing and subscribing to email series"/>
                     </div>
                     <h3 className="font-sans text-3xl font-bold mb-0 mt-4 text-blue-600">
                         You don't have to be a full time newsletter writer

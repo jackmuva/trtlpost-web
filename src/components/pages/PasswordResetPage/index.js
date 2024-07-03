@@ -62,7 +62,7 @@ function PasswordResetPage () {
                     </div>
                 </div>
                 <div>
-                    <img src="/images/bellevue-sunset.png" className="h-full hidden md:block rounded-r-2xl" alt=""/>
+                    <img src="/images/bellevue-sunset.png" className="h-full hidden md:block rounded-r-2xl" alt="sunset image"/>
                 </div>
             </div>);
     }

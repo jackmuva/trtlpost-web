@@ -81,7 +81,7 @@ function LoginPage({ setWriter }) {
                         </div>
                     </div>
                     <div>
-                        <img src="images/pug-mug.png" class="h-full hidden md:block rounded-r-2xl" alt=""/>
+                        <img src="images/pug-mug.png" class="h-full hidden md:block rounded-r-2xl" alt="Pug asking you to write an email series"/>
                     </div>
                 </div>
             </div>
