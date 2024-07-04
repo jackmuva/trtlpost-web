@@ -14,6 +14,7 @@ function EditSeriesPage(){
         series: null
     })
     const [pageNum, setPageNum] = useState(0);
+    const [load, setLoad] = useState(false);
     const location = useLocation();
 
     useEffect(() =>{
@@ -40,6 +41,7 @@ function EditSeriesPage(){
     }, [edited, pageNum]);
 
     const createEntry = () => {
+        setLoad(true);
         let entry = {
             seriesId: location.state.series.series.seriesId,
             entryJson: "{\"blocks\":[{\"type\":\"paragraph\",\"data\":{\"text\":\"Start Writing\"}}],\"version\":\"2.28.0\"}",
@@ -54,6 +56,7 @@ function EditSeriesPage(){
                     setPageNum(pageNum + 1);
                 }else{
                     setEdited(true);
+                    setLoad(false);
                 }
             });
         });
@@ -78,7 +81,7 @@ function EditSeriesPage(){
                             <li className="hover:bg-gray-200 rounded-xl p-4">
                                 <FontAwesomeIcon icon={faPenToSquare}/>
                                 <button className="pl-2 text-xl" onClick={() => createEntry()}
-                                        type="submit">
+                                        type="submit" disabled = {load}>
                                     Create New Entry
                                 </button>
                             </li>
@@ -110,7 +113,7 @@ function EditSeriesPage(){
                         <ul className="space-y-2 font-medium">
                             <li className="hover:bg-gray-200 rounded-xl p-4">
                                 <FontAwesomeIcon icon={faPenToSquare}/>
-                                <button class = "pl-2 text-xl" onClick={() => createEntry()} type="submit">
+                                <button class = "pl-2 text-xl" onClick={() => createEntry()} type="submit" disabled = {load}>
                                     Create New Entry
                                 </button>
                             </li>
