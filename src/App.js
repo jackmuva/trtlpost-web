@@ -16,6 +16,7 @@ const HomePage = lazy(() => import("./components/pages/HomePage"));
 const SeriesInfoPage = lazy(() => import("./components/pages/SeriesInfoPage"));
 const UnsubscribePage = lazy(() => import("./components/pages/UnsubscribePage"));
 const PasswordResetPage = lazy(() => import("./components/pages/PasswordResetPage"));
+const PaymentPage = lazy(() => import("./components/pages/PaymentPage"));
 
 function App() {
     const [user, setUser] = useState([]);
@@ -38,6 +39,9 @@ function App() {
                     </Route>
                     <Route path = "/about">
                         <AboutPage></AboutPage>
+                    </Route>
+                    <Route path = "/payment">
+                        <PaymentPage></PaymentPage>
                     </Route>
                     <Route path = "/deleteConfirmation">
                         <DeleteConfirmationPage></DeleteConfirmationPage>

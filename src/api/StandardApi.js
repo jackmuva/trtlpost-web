@@ -1,5 +1,5 @@
-// const apiUrl = "http://localhost:5000";
-const apiUrl = "https://trtlmail-rest.com"
+const apiUrl = "http://localhost:5000";
+// const apiUrl = "https://trtlmail-rest.com"
 
 export default class StandardApi {
     retrieveApiUrl(){
@@ -68,6 +68,17 @@ export default class StandardApi {
             headers:{
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    postWithAuthWithParam(url){
+        return fetch(apiUrl.concat(url), {
+            method: 'POST',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
             }
         });
     }
