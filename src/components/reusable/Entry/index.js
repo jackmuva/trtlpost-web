@@ -1,10 +1,11 @@
-import {NavLink} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import React, {useState} from "react";
 import EntryApi from "../../../api/EntryApi";
 import {faFeatherPointed, faToilet} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Entry = ({ entry, maxEntry, setEdited}) => {
+    const navigate = useNavigate();
     const [editable, setEditable] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -31,6 +32,14 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
         }
     }
 
+    function redirectToDelete(){
+        navigate('/deleteConfirmation', {state: {type: 'entry', obj: { entry }}});
+    }
+
+    function redirectToEditor(){
+        navigate('/editEntry', {state: {entry: {entry}}});
+    }
+
     const createOrderOptions = (maxSize) => {
         let nums = [];
         for (let i=1;i<=maxSize;i++) {
@@ -44,10 +53,10 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
         return (
             <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
                 <div className="p-1 m-0 col-span-3">
-                    <NavLink class="mb-0 font-sans text-2xl font-bold text-blue-800 hover:text-blue-300"
-                             to={{pathname: '/editEntry', state: {entry: {entry}}}}>
+                    <button onClick = {() => redirectToEditor()}
+                        class="mb-0 font-sans text-2xl font-bold text-blue-800 hover:text-blue-300">
                         {entry.title}
-                    </NavLink>
+                    </button>
                     <h3 class="ml-3 my-0 font-sans text-base"> Order: {entry.orderNum}</h3>
                 </div>
                 <div class="col-span-1 text-center flex flex-col">
@@ -58,11 +67,10 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
                         </button>
                     </div>
                     <div>
-                        <button className="my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
+                        <button onClick = {() => redirectToDelete()}
+                            className="ml-1 my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
                             <FontAwesomeIcon icon={faToilet} />
-                            <NavLink class = "ml-1" to={{pathname: '/deleteConfirmation', state: {type: 'entry', obj: { entry }}}}>
-                                Delete Entry
-                            </NavLink>
+                            Delete Entry
                         </button>
                     </div>
                 </div>

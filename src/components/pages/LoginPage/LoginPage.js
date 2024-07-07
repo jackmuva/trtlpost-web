@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AuthorizationApi from "../../../api/AuthorizationApi";
-import {Redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import WriterApi from "../../../api/WriterApi";
 import {toast} from "react-toastify";
 
@@ -51,7 +51,7 @@ function LoginPage({ setWriter }) {
 
     if(errorMessage === "Login Successful"){
         let redirectUrl = '/writer/' + sessionStorage.getItem("penName");
-        return <Redirect to={redirectUrl}/>
+        return <Navigate to={redirectUrl}/>
     }
     else {
         return (

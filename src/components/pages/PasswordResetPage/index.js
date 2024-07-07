@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthorizationApi from "../../../api/AuthorizationApi";
 import WriterApi from "../../../api/WriterApi";
-import {Redirect, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {toast} from "react-toastify";
 
 function PasswordResetPage () {
@@ -43,7 +43,7 @@ function PasswordResetPage () {
     };
 
     if(errorMessage === "Successfully Changed Password"){
-        return <Redirect to='/login'  />
+        return <Navigate to='/login'  />
     }
     else{
         return(

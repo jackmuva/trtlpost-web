@@ -21,15 +21,16 @@
     "@testing-library/user-event": "^13.5.0",
     "editorjs-html": "^3.4.3",
     "font-awesome-icons": "^1.6.0",
-    "http-server": "^0.9.0",
+    "http-server": "^14.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "5.0.1",
+    "react-router-dom": "^6.0.0",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^10.0.4",
     "styled-components": "^5.3.11",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.92.1"
   },
   "scripts": {
     "start": "react-scripts start",

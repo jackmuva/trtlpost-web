@@ -1,44 +1,20 @@
-import {useEffect, useState} from "react";
-import StripeApi from "../../../api/StripeApi";
-
+import {useLocation} from "react-router-dom";
 
 function PaymentPage(){
-    const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        // Check to see if this is a redirect back from Checkout
-        const query = new URLSearchParams(window.location.search);
-
-        if (query.get("success")) {
-            setMessage("Order placed! You will receive an email confirmation.");
-        }
-
-        if (query.get("canceled")) {
-            setMessage(
-                "Order canceled -- continue to shop around and checkout when you're ready."
-            );
-        }
-    }, []);
+    const location = useLocation();
 
     function submitPayment() {
-        StripeApi.postPayment().then((data) => {
-            console.log("hi");
-            setMessage(data.message);
-        })
+        const seriesId = location.state.series.series.seriesId
+        window.location.href = `https://buy.stripe.com/test_3cs2axcER5aJ73aaEE?client_reference_id=${seriesId}`;
     }
 
     return(
         <div>
-            {message !== "" &&
-                <section>
-                    <p>{message}</p>
-                </section>
-            }
             <section>
                 <div>
                     <img src="/images/logo.png" alt="The cover of Stubborn Attachments"/>
                     <div>
-                        <h3>Stubborn Attachments</h3>
+                        <h3>Remove Reader Limit for Email Series</h3>
                         <h5>$5.00</h5>
                     </div>
                 </div>

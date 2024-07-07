@@ -1,4 +1,4 @@
-import {Redirect, useLocation} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
 import {toast} from "react-toastify";
@@ -116,10 +116,10 @@ function NewSeriesPage() {
 
     if (errorMessage === 'Created Successfully') {
         let redUrl = '/writer/' + location.state.writer.writer.penName;
-        return <Redirect to = {redUrl} />
+        return <Navigate to = {redUrl} />
     } else if (errorMessage === 'Edited Successfully') {
         let redUrl = '/writer/' + series.penName;
-        return <Redirect to = {redUrl} />
+        return <Navigate to = {redUrl} />
     } else {
         return (
             <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl

@@ -1,7 +1,7 @@
 import WriterApi from "../../../api/WriterApi";
 import React, {useEffect, useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
-import {NavLink, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import SeriesPageWriterView from "./SeriesPageWriterView/SeriesPageWriterView";
 import SeriesPage from "../SeriesPage/series-page";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ import PaginationBar from "../../reusable/PaginationBar";
 
 function WriterDashboard (){
     const { penName } = useParams();
+    const navigate = useNavigate();
     const [writer, setWriter] = useState([]);
     const [series, setSeries] = useState([]);
     const [pageNum, setPageNum] = useState(0);
@@ -43,6 +44,10 @@ function WriterDashboard (){
 
     }, [pageNum])
 
+    function redirectToNewSeries() {
+        navigate(`/writer/${penName}/newSeries`, {state: {type: 'create', writer: {writer}}});
+    }
+
     if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
         return (
             <div>
@@ -51,13 +56,10 @@ function WriterDashboard (){
                         <ul className="space-y-2 font-medium">
                             <li class = "hover:bg-gray-200 rounded-xl p-4">
                                 <FontAwesomeIcon icon={faPenNib} />
-                                <NavLink class="ms-3 text-xl"
-                                         to={{
-                                             pathname: `${penName}/newSeries`,
-                                             state: {type: 'create', writer: {writer}}
-                                         }}>
+                                <button onClick = {() => redirectToNewSeries()}
+                                    class="ms-3 text-xl">
                                     Create New Series
-                                </NavLink>
+                                </button>
                             </li>
                         </ul>
                     </div>
