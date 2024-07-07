@@ -81,20 +81,22 @@ const SeriesWriterView = ({ series }) => {
                 </div>
                 <div class="flex mb-2">
                     <div class = "grid grid-cols-2">
-                        <div class = "grid-rows-2 mx-6 mt-4 border-4 border border-solid rounded-lg border-amber-200">
-                            <div class = "flex mt-6 mx-4 text-lg font-sans font-bold"> <p><em>All Time</em> # of Readers: </p></div>
-                            <div class = "flex mx-4 mb-6 mt-2 text-2xl font-sans font-bold">{series.numAllTimeReaders} readers</div>
+                        <div class = "grid-rows-2 py-6 mx-6 mt-4 border-4 border border-solid rounded-lg border-amber-200">
+                            <div class = "flex mt-2 mx-4 text-lg font-sans font-bold"> <p><em>All Time</em> # of Readers: </p></div>
+                            <div class = "flex mx-4 mb-2 mt-2 text-2xl font-sans font-bold">{series.numAllTimeReaders} readers</div>
                         </div>
-                        <div className="grid-rows-3 mx-6 mt-4 border-4 border border-solid rounded-lg border-rose-200">
+                        <div className="grid-rows-3 py-2 mx-6 mt-4 border-4 border border-solid rounded-lg border-rose-200">
                             <div className="flex mt-2 mx-4 text-lg font-sans font-bold"><p><em>Current</em> # of Readers:</p></div>
-                            <div className="flex mx-4 mb-2 mt-2 text-2xl font-sans font-bold">{series.numCurrentReaders} readers / 10 max</div>
-                            <div className="flex mx-4 mb-2">
-                                <button onClick = {()=> redirectToPayment()}
-                                        className = "px-4 py-1 font-bold text-base text-purple-950 text-wrap w-fit rounded-md bg-green-200 hover:bg-green-100">
-                                    <FontAwesomeIcon icon={faLockOpen} />
-                                    Purchase for No Limit on Current Readers
-                                </button>
-                            </div>
+                            <div className="flex mx-4 mb-2 mt-2 text-2xl font-sans font-bold">{series.numCurrentReaders} readers {series.maxCurrentReaders !== 2147483647 && <p>/ 10 max</p>}</div>
+                            {series.maxCurrentReaders !== 2147483647 &&
+                                <div className="flex mx-4 mb-2">
+                                    <button onClick = {()=> redirectToPayment()}
+                                            className = "px-4 py-1 font-bold text-base text-purple-950 text-wrap w-fit rounded-md bg-green-200 hover:bg-green-100">
+                                        <FontAwesomeIcon icon={faLockOpen} />
+                                        Purchase for No Limit on Current Readers
+                                    </button>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

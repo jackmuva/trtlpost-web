@@ -40,10 +40,12 @@ function SubscribeModal(props) {
 
     const handleSave = () => {
         if(validateEmail(subscription.subscriberEmail)){
-            SubscriptionApi.postNewSubscription(subscription).then(() => {
-                SeriesApi.incrementCounts(props.series.seriesId).then(() => {
-                    toast.success("Subscribed!");
-                })
+            SubscriptionApi.postNewSubscription(subscription).then((data) => {
+                if(data.httpStatusCode === 200){
+                    toast.success(data.message);
+                } else{
+                    toast.error(data.message);
+                }
             });
             handleClose();
         }

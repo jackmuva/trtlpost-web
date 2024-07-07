@@ -1,11 +1,12 @@
 import {useLocation} from "react-router-dom";
+import StripeApi from "../../../api/StripeApi";
 
 function PaymentPage(){
     const location = useLocation();
 
     function submitPayment() {
         const seriesId = location.state.series.series.seriesId
-        window.location.href = `https://buy.stripe.com/test_3cs2axcER5aJ73aaEE?client_reference_id=${seriesId}`;
+        window.location.href = StripeApi.retrieveStripeLink(seriesId);
     }
 
     return(
