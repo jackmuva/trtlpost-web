@@ -51,10 +51,11 @@ function WriterDashboard (){
     if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
         return (
             <div>
-                <aside class="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0 bg-gradient-to-t from-gray-200">
+                <aside class="mt-10 ml-2 mb-4 fixed top-20 left-0 z-40 w-64 h-5/6 pt-10 transition-transform -translate-x-full sm:translate-x-0
+                                bg-slate-200 rounded-2xl">
                     <div className="h-full px-3 overflow-y-auto">
                         <ul className="space-y-2 font-medium">
-                            <li class = "hover:bg-gray-200 rounded-xl p-4">
+                            <li class = "hover:bg-gray-300 rounded-xl p-4">
                                 <FontAwesomeIcon icon={faPenNib} />
                                 <button onClick = {() => redirectToNewSeries()}
                                     class="ms-3 text-xl">
