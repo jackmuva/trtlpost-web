@@ -1,6 +1,7 @@
 // const apiUrl = "http://localhost:5000";
-const apiUrl = "https://trtlmail-rest.com"
 // const stripeUrl = "https://buy.stripe.com/test_3cs2axcER5aJ73aaEE?client_reference_id=";
+
+const apiUrl = "https://trtlmail-rest.com"
 const stripeUrl = "https://buy.stripe.com/5kA2b60iqdbY3uw9AB";
 
 export default class StandardApi {
