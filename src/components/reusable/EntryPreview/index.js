@@ -3,7 +3,7 @@ import Header from "@editorjs/header";
 import ImageTool from "@editorjs/image";
 import LinkTool from "@editorjs/link";
 import {useEffect, useRef} from "react";
-import EditorJsApi from "../../../../api/EditorJsApi";
+import EditorJsApi from "../../../api/EditorJsApi";
 
 
 function EntryPreview({entry}){

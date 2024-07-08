@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthorizationApi from "../../../api/AuthorizationApi";
 import WriterApi from "../../../api/WriterApi";
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import {toast} from "react-toastify";
 
 function SignUpPage () {
@@ -71,7 +71,7 @@ function SignUpPage () {
     }
 
     if(errorMessage === "Registration Complete"){
-        return <Redirect to='/login'  />
+        return <Navigate to='/login'  />
     }
     else{
         return(

@@ -1,4 +1,4 @@
-import {NavLink, useLocation} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import React, {useEffect, useRef, useState} from "react";
 import EditorJS from "@editorjs/editorjs";
 import EntryApi from "../../../api/EntryApi";
@@ -10,9 +10,10 @@ import edjsHTML from "editorjs-html";
 import {toast} from "react-toastify";
 import EditorJsApi from "../../../api/EditorJsApi";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCircleLeft, faFloppyDisk, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
+import {faCircleLeft, faFloppyDisk} from "@fortawesome/free-solid-svg-icons";
 
 function EditEntryPage(){
+    const navigate = useNavigate();
     const location = useLocation();
     let DEFAULT_INITIAL_DATA;
     const ejInstance = useRef();
@@ -91,6 +92,7 @@ function EditEntryPage(){
             entry.entryHtml = JSON.stringify(html);
             EntryApi.updateEntry(entry).then(() => {
                 toast.success("Entry Saved");
+                navigate('/editSeries', {state: {series: {series}}});
             });
         }).catch(() => {
             toast.error('Saving failed');
@@ -111,12 +113,11 @@ function EditEntryPage(){
                                 Save Entry
                             </button>
                         </li>
-                        <li className="hover:bg-gray-200 rounded-xl p-4">
+                        <li className="hover:bg-gray-200 rounded-xl pl-2 text-xl p-4">
                             <FontAwesomeIcon icon={faCircleLeft} />
-                            <NavLink class="pl-2 text-xl"
-                                     onClick={() => handleSubmit()} to={{pathname: '/editSeries', state: {series: {series}}}}>
+                            <button onClick={() => handleSubmit()}>
                                 Return to Entries
-                            </NavLink>
+                            </button>
                         </li>
                     </ul>
                 </div>

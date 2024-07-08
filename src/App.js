@@ -1,6 +1,6 @@
 import Header from "./components/reusable/Header/header";
 import React, { useState, Suspense, lazy } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -16,6 +16,8 @@ const HomePage = lazy(() => import("./components/pages/HomePage"));
 const SeriesInfoPage = lazy(() => import("./components/pages/SeriesInfoPage"));
 const UnsubscribePage = lazy(() => import("./components/pages/UnsubscribePage"));
 const PasswordResetPage = lazy(() => import("./components/pages/PasswordResetPage"));
+const PaymentPage = lazy(() => import("./components/pages/PaymentPage"));
+const PaymentConfirmationPage = lazy(() => import("./components/pages/PaymentConfirmationPage"));
 
 function App() {
     const [user, setUser] = useState([]);
@@ -32,47 +34,23 @@ function App() {
                     </div>
                 </div>}
             >
-                <Switch>
-                    <Route path = "/changePassword/:token">
-                        <PasswordResetPage></PasswordResetPage>
-                    </Route>
-                    <Route path = "/about">
-                        <AboutPage></AboutPage>
-                    </Route>
-                    <Route path = "/deleteConfirmation">
-                        <DeleteConfirmationPage></DeleteConfirmationPage>
-                    </Route>
-                    <Route path = "/writer/:penName/newSeries">
-                        <NewSeriesPage></NewSeriesPage>
-                    </Route>
-                    <Route path = "/writer/:penName/editSeriesDetails/:seriesId">
-                        <NewSeriesPage></NewSeriesPage>
-                    </Route>
-                    <Route path = "/editEntry">
-                        <EditEntryPage></EditEntryPage>
-                    </Route>
-                    <Route path = "/editSeries">
-                        <EditSeriesPage></EditSeriesPage>
-                    </Route>
-                    <Route path = "/signup">
-                        <SignUpPage></SignUpPage>
-                    </Route>
-                    <Route path = "/login">
-                        <LoginPage setWriter = {setUser}></LoginPage>
-                    </Route>
-                    <Route path = "/writer/:penName">
-                        <WriterDashboard></WriterDashboard>
-                    </Route>
-                    <Route path="/series/:seriesId">
-                        <SeriesInfoPage></SeriesInfoPage>
-                    </Route>
-                    <Route path="/unsubscribe">
-                        <UnsubscribePage></UnsubscribePage>
-                    </Route>
-                    <Route path = "/">
-                        <HomePage></HomePage>
-                    </Route>
-                </Switch>
+                <Routes>
+                    <Route path = "/changePassword/:token" element = {<PasswordResetPage/>}/>
+                    <Route path = "/about" element = {<AboutPage></AboutPage>} />
+                    <Route path = "/paymentConfirmation" element = {<PaymentConfirmationPage />} />
+                    <Route path = "/payment/:seriesId" element = {<PaymentPage />} />
+                    <Route path = "/deleteConfirmation" element = {<DeleteConfirmationPage />} />
+                    <Route path = "/writer/:penName/newSeries" element = {<NewSeriesPage />}/>
+                    <Route path = "/writer/:penName/editSeriesDetails/:seriesId" element = {<NewSeriesPage/>}/>
+                    <Route path = "/editEntry" element = {<EditEntryPage/>}/>
+                    <Route path = "/editSeries" element = {<EditSeriesPage/>}/>
+                    <Route path = "/signup" element = {<SignUpPage/>}/>
+                    <Route path = "/login" element = {<LoginPage setWriter={setUser}/>}/>
+                    <Route path = "/writer/:penName" element = {<WriterDashboard/>}/>
+                    <Route path="/series/:seriesId" element = {<SeriesInfoPage/>}/>
+                    <Route path="/unsubscribe" element = {<UnsubscribePage/>}/>
+                    <Route path = "/" element = {<HomePage/>}/>
+                </Routes>
             </Suspense>
         </div>
       </Router>

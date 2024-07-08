@@ -1,4 +1,4 @@
-import {Redirect, useLocation} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 import {useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
 import EntryApi from "../../../api/EntryApi";
@@ -44,14 +44,14 @@ const DeleteConfirmationPage = () => {
 
     if(errorMessage === "Deleted Successfully" && type === "series"){
         let redUrl = '/writer/' + obj?.series.penName;
-        return <Redirect to = {redUrl} />
+        return <Navigate to = {redUrl} />
     } else if (errorMessage === "Deleted Successfully" && type === "entry"){
-        return <Redirect to={{
+        return <Navigate to={{
             pathname: "/editSeries",
             state: {series:{ series: {seriesId: obj.entry.seriesId, email: obj.entry.email} }}
         }} />
     } else if(errorMessage === "Deleted Successfully" && type === "writer"){
-        return <Redirect to='/'/>
+        return <Navigate to='/'/>
     }
     return(
         <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl

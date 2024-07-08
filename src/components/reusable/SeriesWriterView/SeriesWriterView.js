@@ -1,11 +1,13 @@
-import {NavLink, Link} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import React from "react";
 import SeriesApi from "../../../api/SeriesApi";
 import {toast} from "react-toastify";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faToilet, faFeatherPointed} from "@fortawesome/free-solid-svg-icons";
+import {faToilet, faFeatherPointed, faLockOpen} from "@fortawesome/free-solid-svg-icons";
 
 const SeriesWriterView = ({ series }) => {
+    const navigate = useNavigate();
+    const {penName} = useParams();
 
     function getDateTime() {
         let now     = new Date();
@@ -42,13 +44,32 @@ const SeriesWriterView = ({ series }) => {
             });
     };
 
+    function redirectToPayment() {
+        navigate(`/payment/${series.seriesId}`, {state:{series: {series}}});
+    }
+
+    function redirectToEditSeries() {
+        navigate('/editSeries', {state:{series: {series}}});
+    }
+
+    function redirectToEditDetails() {
+        navigate(`/writer/${penName}/editSeriesDetails/${series.seriesId}`, {state: {type:'edit', series: {series}}});
+    }
+
+    function redirectToDelete(){
+        navigate('/deleteConfirmation', {state: {type: 'series', obj: { series }}});
+    }
+
+
+
     return (
         <div class="grid grid-cols-4 border-b-2 border-stone-200">
             <div class="p-1 m-0 col-span-3">
                 <div class = "flex-auto">
-                    <NavLink to={{pathname:'/editSeries', state: {series: {series}}}} class="mb-0 font-sans text-4xl font-bold text-blue-800 hover:text-blue-300">
+                    <button onClick = {() => redirectToEditSeries()}
+                            class="mb-0 font-sans text-4xl font-bold text-blue-800 hover:text-blue-300">
                         {series.title}
-                    </NavLink>
+                    </button>
                     <h3 class="text-lg ml-3 my-0 font-sans text-base"> Written By: {series.penName}</h3>
                     <h3 class="text-lg font-sans text-base overflow-auto">Summary: {series.summary}</h3>
                 </div>
@@ -58,16 +79,21 @@ const SeriesWriterView = ({ series }) => {
                     {series.tags !== '' &&
                         <p class="mr-3 font-sans"> Tags: {series.tags} </p>}
                 </div>
-                <div class="flex mb-2">
-                    <div class = "grid grid-cols-2">
-                        <div class = "grid-rows-2 mx-6 mt-4 border-4 border border-solid rounded-lg border-amber-200">
-                            <div class = "flex mt-2 mx-4 text-lg font-sans font-bold"> <p><em>All Time</em> # of Readers: </p></div>
-                            <div class = "flex mx-4 mb-2 mt-2 text-2xl font-sans font-bold">{series.numAllTimeReaders}</div>
-                        </div>
-                        <div className="grid-rows-2 mx-6 mt-4 border-4 border border-solid rounded-lg border-rose-200">
-                            <div className="flex mt-2 mx-4 text-lg font-sans font-bold"><p><em>Current</em> # of Readers:</p></div>
-                            <div className="flex mx-4 mb-2 mt-2 text-2xl font-sans font-bold">{series.numCurrentReaders}</div>
-                        </div>
+                <div class="flex mb-2 items-center">
+                    <div class = "flex-col p-4 mx-2 mt-4 border-4 border border-solid rounded-lg border-amber-200">
+                        <div class = "justify-center flex text-lg font-sans font-bold"> <p><em>All Time</em> # of Readers: </p></div>
+                        <div class = "justify-center flex text-2xl font-sans font-bold">{series.numAllTimeReaders} reader(s)</div>
+                    </div>
+                    <div className="flex-col p-4 mx-2 mt-4 border-4 border border-solid rounded-lg border-rose-200">
+                        <div className="justify-center flex text-lg font-sans font-bold"><p><em>Current</em> # of Readers:</p></div>
+                        <div className="justify-center flex text-2xl font-sans font-bold">{series.numCurrentReaders} reader(s) {series.maxCurrentReaders !== 2147483647 && <p>/ 10 max*</p>}</div>
+                        {series.maxCurrentReaders !== 2147483647 &&
+                            <button onClick = {()=> redirectToPayment()}
+                                    className = "mt-1 p-2 font-bold text-base text-purple-950 text-wrap rounded-md bg-green-200 hover:bg-green-100">
+                                <FontAwesomeIcon icon={faLockOpen} />
+                                Purchase for Limit Removal*
+                            </button>
+                        }
                     </div>
                 </div>
             </div>
@@ -81,21 +107,16 @@ const SeriesWriterView = ({ series }) => {
                     </label>
                 </div>
                 <div>
-                    <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-900">
+                    <button onClick = {() => redirectToEditDetails()}
+                        className="mb-2 px-4 py-1 rounded-md text-slate-50 text-xl ml-1 bg-blue-600 hover:bg-blue-900">
                         <FontAwesomeIcon icon={faFeatherPointed} />
-                        <NavLink class = "text-xl ml-1" to={{
-                            pathname: `${series.penName}/editSeriesDetails/${series.seriesId}`,
-                            state: {type:'edit', series: {series}}
-                        }}>
                             Edit Series Details
-                        </NavLink>
                     </button>
                 </div>
-                <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
+                <button onClick = {() => redirectToDelete()}
+                    className="mb-2 px-4 py-1 rounded-md text-slate-50 text-xl ml-1 bg-red-700 hover:bg-red-900">
                     <FontAwesomeIcon icon={faToilet} />
-                    <NavLink class = "text-xl ml-1" to={{pathname: '/deleteConfirmation', state: {type: 'series', obj: { series }}}}>
-                        Delete Series
-                    </NavLink>
+                    Delete Series
                 </button>
             </div>
         </div>
