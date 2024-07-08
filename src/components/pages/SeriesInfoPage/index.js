@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
 import EntryApi from "../../../api/EntryApi";
-import EntryPreview from "./EntryPreview";
+import EntryPreview from "../../reusable/EntryPreview";
 import Series from "../../reusable/Series";
 
 
@@ -29,12 +29,12 @@ const SeriesInfoPage = () => {
 
     if(series.length !== 0 && entry != null) {
         return (
-            <div className="flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
+            <div className="flex-col md:m-6 sm:m-2 space-y-10 bg-white shadow-2xl rounded-2xl
                 md:flex-row md:space-y-0 md:mx-52">
-                <div className="px-20 pt-20">
+                <div className="md:px-20 sm:px-2 pt-20">
                     <Series series={series} preview = {true} />
                 </div>
-                <div className="pt-10 mt-0 px-20 mb-0">
+                <div className="pt-10 mt-0 md:px-20 sm:px-2 mb-0">
                     <h2 className="ml-10">First Entry Preview:</h2>
                     <EntryPreview entry = {entry}></EntryPreview>
                 </div>
@@ -42,7 +42,7 @@ const SeriesInfoPage = () => {
         );
     } else{
         return(
-            <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
+            <div className="flex flex-col md:m-6 sm:m-2 space-y-10 bg-white shadow-2xl rounded-2xl
                     md:flex-row md:space-y-0 md:mx-52">
                 <div className="p-6 md:p-20">
                     <h1>Email Series does not exist</h1>
