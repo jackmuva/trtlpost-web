@@ -59,7 +59,7 @@ function LoginPage({ setWriter }) {
                 <div class="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
                     md:flex-row md:space-y-0 md:mx-52 w-1/2">
                     <div class="p-6 md:p-20">
-                        <h2 class="font-sans test-4xl font-bold mb-2">Log In</h2>
+                        <h2 class="font-sans font-bold mb-2">Log In</h2>
                         <p class="mb-2 max-2-sm font-sans font-light text-gray-600">
                             Log in to your account to draft and publish your email series
                         </p>

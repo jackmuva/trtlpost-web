@@ -14,13 +14,13 @@ function PaymentPage(){
             <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
                     md:flex-row md:space-y-0 md:mx-52 w-1/2">
                 <div className="p-6 md:p-20">
-                    <h2 className="font-sans font-bold mb-2">Purchase Reader Cap Removal</h2>
+                    <h2 className="font-sans font-bold mb-2">$10 - Reader Cap Removal</h2>
                     <h3 className="font-sans mb-2">Why is there a reader limit?</h3>
                     <p className="mb-2 max-2-sm font-sans font-light text-gray-700">
                         Purchases go to paying for the server and hosting costs of this site!<br/><br/>
                         Removing the reader cap means there is no limit on how many people are reading
                         your series at the same time. <br/><br/>
-                        his purchase is single purchase (no subscriptions here) per series for the lifetime of this series.
+                        This purchase is single purchase (no subscriptions here) per series for the lifetime of this series.
                     </p>
                     <div>
                         <button

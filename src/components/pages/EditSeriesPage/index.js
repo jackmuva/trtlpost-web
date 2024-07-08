@@ -74,19 +74,18 @@ function EditSeriesPage(){
     if(data.entries.length === 0){
         return (
             <div>
-                <aside
-                    className="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0
-                                bg-slate-200 rounded-2xl">
+                <aside className="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0
+                                bg-slate-100 rounded-2xl">
                     <div className="h-full px-3 overflow-y-auto">
                         <ul className="space-y-2 font-medium">
-                            <li className="hover:bg-gray-200 rounded-xl p-4">
+                            <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
                                 <FontAwesomeIcon icon={faPenToSquare}/>
                                 <button className="pl-2 text-xl" onClick={() => createEntry()}
                                         type="submit" disabled = {load}>
                                     Create New Entry
                                 </button>
                             </li>
-                            <li className="hover:bg-gray-200 rounded-xl p-4">
+                            <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
                                 <FontAwesomeIcon icon={faCircleLeft} />
                                 <a className="pl-2 text-xl" href={writerUrl}>Back to Series Page</a>
                             </li>
@@ -108,17 +107,17 @@ function EditSeriesPage(){
         });
         return(
             <div>
-                <aside
-                    className="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0 bg-gradient-to-t from-gray-200">
+                <aside className="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0
+                                bg-slate-100 rounded-2xl">
                     <div className="h-full px-3 overflow-y-auto">
                         <ul className="space-y-2 font-medium">
-                            <li className="hover:bg-gray-200 rounded-xl p-4">
+                            <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
                                 <FontAwesomeIcon icon={faPenToSquare}/>
                                 <button class = "pl-2 text-xl" onClick={() => createEntry()} type="submit" disabled = {load}>
                                     Create New Entry
                                 </button>
                             </li>
-                            <li className="hover:bg-gray-200 rounded-xl p-4">
+                            <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
                                 <FontAwesomeIcon icon={faCircleLeft} />
                                 <a className="pl-2 text-xl" href={writerUrl}>Back to Series Page</a>
                             </li>
