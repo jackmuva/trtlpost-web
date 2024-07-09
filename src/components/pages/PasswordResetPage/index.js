@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AuthorizationApi from "../../../api/AuthorizationApi";
-import WriterApi from "../../../api/WriterApi";
-import {useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 import {toast} from "react-toastify";
 
 function PasswordResetPage () {

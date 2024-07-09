@@ -67,7 +67,7 @@ const SeriesWriterView = ({ series }) => {
             <div class="p-1 m-0 col-span-3">
                 <div class = "flex-auto">
                     <button onClick = {() => redirectToEditSeries()}
-                            class="mb-0 font-sans text-4xl font-bold text-blue-800 hover:text-blue-300">
+                            class="mb-0 font-sans text-4xl font-bold text-indigo-700 hover:text-blue-300">
                         {series.title}
                     </button>
                     <h3 class="text-lg ml-3 my-0 font-sans text-base"> Written By: {series.penName}</h3>

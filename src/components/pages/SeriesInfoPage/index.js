@@ -29,13 +29,13 @@ const SeriesInfoPage = () => {
 
     if(series.length !== 0 && entry != null) {
         return (
-            <div className="flex-col md:m-6 sm:m-2 space-y-10 bg-white shadow-2xl rounded-2xl
+            <div className="flex-col md:m-6 m-2 space-y-6 bg-white shadow-2xl rounded-2xl
                 md:flex-row md:space-y-0 md:mx-52">
                 <div className="md:px-20 sm:px-2 pt-20">
                     <Series series={series} preview = {true} />
                 </div>
-                <div className="pt-10 mt-0 md:px-20 sm:px-2 mb-0">
-                    <h2 className="ml-10">First Entry Preview:</h2>
+                <div className="pt-10 mt-0 md:px-20 px-2 mb-0">
+                    <h2 className="md:ml-10">First Entry Preview:</h2>
                     <EntryPreview entry = {entry}></EntryPreview>
                 </div>
             </div>

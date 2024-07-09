@@ -5,11 +5,11 @@ const AboutPage = () => {
     return(
         <>
             <div class="flex flex-col justify-center items-center w-screen space-y-2">
-                <div className="flex flex-col m-6 px-6 pt-4 pb-8 space-y-2 md:mx-52 w-1/2">
+                <div className="flex flex-col my-6 px-6 pt-4 pb-8 space-y-2 md:mx-52 mx-2 sm:p-2 md:w-1/2 w-screen">
                     <h2 className="font-sans text-4xl font-bold mb-0 mt-4 text-indigo-700">
                         A Platform to Create and Subscribe to Email Series
                     </h2>
-                    <p class="ml-8 mb-4 max-2-sm font-sans text-xl">
+                    <p class="ml-8 mb-4 max-2-sm font-sans text-lg md:text-xl">
                         We look at email series as a set number of emails that writers do not need to consistently add to.
                         Writers can write out their emails and choose how often readers will receive them (i.e. every 2 days,
                         every week, every month, etc).
@@ -17,7 +17,7 @@ const AboutPage = () => {
                     <div class="flex justify-center items-center m-0">
                         <img src="images/email-series.png" className="rounded-r-2xl md:block" alt="An example of an email series about health"/>
                     </div>
-                    <p className="ml-8 mb-4 max-2-sm font-sans text-xl">
+                    <p className="ml-8 mb-4 max-2-sm font-sans text-lg md:text-xl">
                         Readers after subscribing will receive the series in its entirety, from the first entry to
                         the last one.
                         <br/><br/>
@@ -39,7 +39,7 @@ const AboutPage = () => {
                     <h3 className="font-sans text-3xl font-bold mb-0 mt-4 text-blue-600">
                         You don't have to be a full time newsletter writer
                     </h3>
-                    <p className="ml-8 mb-4 max-2-sm font-sans text-xl">
+                    <p className="ml-8 mb-4 max-2-sm font-sans text-lg md:text-xl">
                         We think that email series are a great way for writers to write an "email newsletter" where they
                         can write about things that they are passionate or knowledgeable about, but aren't necessarily
                         full time writers who can consistently write a new entry for their newsletter every week.
@@ -51,7 +51,7 @@ const AboutPage = () => {
                     <h3 className="font-sans text-3xl font-bold mb-0 mt-4 text-blue-600">
                         A slower more intentional reading experience
                     </h3>
-                    <p className="ml-8 mb-4 max-2-sm font-sans text-xl">
+                    <p className="ml-8 mb-4 max-2-sm font-sans text-lg md:text-xl">
                         The second idea behind TrtlPost is for a slower medium for receiving content. With Youtube, Netflix, Medium,
                         and other great online platforms, it's easy to read and watch videos, shows, and articles to your heart's
                         content. With TrtlPost, we wanted to offer a change of pace and capture that feeling of anticipation
