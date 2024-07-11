@@ -51,24 +51,24 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
 
     if(!editable) {
         return (
-            <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
-                <div className="p-1 m-0 col-span-3">
+            <div className="my-4 flex flex-col md:flex-row border-b-2 border-stone-200">
+                <div className="p-1 m-0 md:basis-5/6">
                     <button onClick = {() => redirectToEditor()}
                         class="mb-0 font-sans text-2xl font-bold text-blue-800 hover:text-blue-300">
                         {entry.title}
                     </button>
                     <h3 class="ml-3 my-0 font-sans text-base"> Order: {entry.orderNum}</h3>
                 </div>
-                <div class="col-span-1 text-center flex flex-col">
+                <div class="md:basis-1/6 text-center flex flex-col">
                     <div>
-                        <button onClick={() => toggleEditable()} type="submit" class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-900">
+                        <button onClick={() => toggleEditable()} type="submit" class="w-full mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-900">
                             <FontAwesomeIcon icon={faFeatherPointed} />
                             Change title and order
                         </button>
                     </div>
                     <div>
                         <button onClick = {() => redirectToDelete()}
-                            className="ml-1 my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
+                            className="w-full ml-1 my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
                             <FontAwesomeIcon icon={faToilet} />
                             Delete Entry
                         </button>
@@ -78,8 +78,8 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
         );
     } else {
         return (
-            <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
-                <div className="p-1 m-0 col-span-3">
+            <div className="my-4 flex md:flex-row flex-col border-b-2 border-stone-200">
+                <div className="p-1 m-0 md:basis-5/6">
                     <div>
                         <input id="title" className="text-2xl mb-0 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                                defaultValue={entry.title}/>
@@ -92,9 +92,9 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
                     </div>
                     {errorMessage && <div className="error"> {errorMessage} </div>}
                 </div>
-                <div className="col-span-1 text-center flex flex-col">
+                <div className="md:basis-1/6 text-center flex flex-col">
                     <button onClick={() => handleSubmit()} type="submit"
-                            className="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">
+                            className="w-full mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">
                         Save Change
                     </button>
                 </div>

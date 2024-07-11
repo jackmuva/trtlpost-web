@@ -63,7 +63,8 @@ function SubscribeModal(props) {
         <div>
             <button class = "text-xl mt-2 px-2 py-1 rounded-md text-indigo-900 font-bold
                             hover:shadow-lg border transition hover:-translate-y-0.5 duration-150
-                             bg-gradient-to-r from-indigo-200 to-emerald-200" onClick={handleClickOpen}>
+                             bg-gradient-to-r from-indigo-200 to-emerald-200 w-full"
+                    onClick={handleClickOpen}>
                 Subscribe
             </button>
             <Dialog class = "flex flex-col md:flex-row rounded-l-xl p-10" open={open} onClose={handleClose}>

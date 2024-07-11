@@ -64,8 +64,8 @@ const SeriesWriterView = ({ series }) => {
 
     return (
         <div class="p-1 m-0 border-b-2 border-stone-200 space-y-0">
-            <div class = "grid grid-cols-4">
-                <div className="col-span-3">
+            <div class = "flex flex-col md:flex-row">
+                <div className="md:basis-5/6">
                     <button onClick = {() => redirectToEditSeries()}
                             class="text-left basis-5/6 mb-0 font-sans md:text-4xl text-2xl font-bold text-indigo-700 hover:text-blue-300">
                         {series.title}
@@ -78,11 +78,33 @@ const SeriesWriterView = ({ series }) => {
                         {series.tags !== '' &&
                             <p className="mr-3 font-sans"> Tags: <strong>{series.tags}</strong> </p>}
                     </div>
+                    <div className="flex-col mb-2">
+                        <div className="flex">
+                            <div className="justify-center flex text-lg font-sans font-bold"><p><em>All Time</em> # of
+                                Readers: </p></div>
+                            <div
+                                className="ml-1 justify-center flex text-lg font-sans font-bold">{series.numAllTimeReaders} reader(s)
+                            </div>
+                        </div>
+                        <div className="flex">
+                            <div className="justify-center flex text-lg font-sans font-bold"><p><em>Current</em> # of
+                                Readers:</p></div>
+                            <div className="ml-1 justify-center flex text-lg font-sans font-bold text-nowrap">
+                                <p>{series.numCurrentReaders} reader(s) </p>
+                                {series.maxCurrentReaders !== 2147483647 &&
+                                    <button onClick={() => redirectToPayment()}
+                                            className="ml-1 font-bold text-lg text-indigo-700 text-wrap hover:text-green-100">
+                                        / 10 max*
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-span-1 mx-2">
-                    <div>
+                <div className="md:basis-1/6 mx-2 flex flex-col">
+                    <div className="text-center">
                         <div className="flex flex-col space-y-0 md:flex-row md:inline-flex">
-                            <span className="font-bold ml-1 font-medium text-gray-900 dark:text-gray-300">Publish</span>
+                            <span className="font-bold ml-1 font-medium text-gray-900">Publish</span>
                             <div className="m-2">
                                 <label className="relative inline-flex items-center cursor-pointer overflow-y-auto">
                                     <input type="checkbox" className="sr-only peer"
@@ -107,24 +129,6 @@ const SeriesWriterView = ({ series }) => {
                         <FontAwesomeIcon icon={faToilet} />
                         Delete Series
                     </button>
-                </div>
-            </div>
-            <div class="flex-col mb-2">
-                <div class = "flex">
-                    <div class = "justify-center flex text-lg font-sans font-bold"> <p><em>All Time</em> # of Readers: </p></div>
-                    <div class = "ml-1 justify-center flex text-lg font-sans font-bold">{series.numAllTimeReaders} reader(s)</div>
-                </div>
-                <div className="flex">
-                    <div className="justify-center flex text-lg font-sans font-bold"><p><em>Current</em> # of Readers:</p></div>
-                    <div className="ml-1 justify-center flex text-lg font-sans font-bold text-nowrap">
-                        <p>{series.numCurrentReaders} reader(s) </p>
-                        {series.maxCurrentReaders !== 2147483647 &&
-                            <button onClick = {()=> redirectToPayment()}
-                                    className = "ml-1 font-bold text-lg text-indigo-700 text-wrap hover:text-green-100">
-                                / 10 max*
-                            </button>
-                        }
-                    </div>
                 </div>
             </div>
         </div>
