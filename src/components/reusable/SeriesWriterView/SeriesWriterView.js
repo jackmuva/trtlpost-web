@@ -3,7 +3,7 @@ import React from "react";
 import SeriesApi from "../../../api/SeriesApi";
 import {toast} from "react-toastify";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faToilet, faFeatherPointed, faLockOpen} from "@fortawesome/free-solid-svg-icons";
+import {faToilet, faFeatherPointed} from "@fortawesome/free-solid-svg-icons";
 
 const SeriesWriterView = ({ series }) => {
     const navigate = useNavigate();

@@ -57,7 +57,7 @@ const DeleteConfirmationPage = () => {
     }
     return(
         <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
-                md:flex-row md:space-y-0 md:mx-52 w-1/2">
+                md:flex-row md:space-y-0 md:mx-52 md:w-1/2">
             <div className="p-6 md:p-20">
                 <p className="mb-2 max-2-sm font-sans text-gray-000">
                     Are you sure you would like to delete your {type}?

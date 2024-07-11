@@ -7,7 +7,7 @@ import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 
 
-function EditorSidebar({ejInstance, entry, series}){
+function EditorSidebar({ejInstance, entry, series, view}){
     const navigate = useNavigate();
     function htmlLinkParser(block){
         return `<a href = "${block.data.link}"> ${block.data.link} </a>`;
@@ -30,30 +30,30 @@ function EditorSidebar({ejInstance, entry, series}){
     };
 
     return(
-        <aside
-            className="hidden md:flex mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0
-                                bg-slate-100 rounded-2xl">
-            <div className="h-full px-3 overflow-y-auto">
-                <ul className="space-y-2 font-medium">
-                    <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
-                        <FontAwesomeIcon icon={faFloppyDisk} />
-                        <button
-                            className="pl-2 text-xl"
-                            type="submit" onClick={() => handleSubmit()}>
-                            Save Entry
-                        </button>
-                    </li>
-                    <li className="hover:bg-gray-200 rounded-xl text-xl p-4 border-b-2">
-                        <FontAwesomeIcon icon={faCircleLeft} />
-                        <button
-                            className="pl-2"
-                            onClick={() => handleSubmit()}>
-                            Return to Entries
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+        <div className={`${view?'' : 'hidden md:flex'}`}>
+            <aside className="md:ml-4 ml-2 px-2 pt-10 h-screen w-1/2 md:w-64 z-40 fixed bg-slate-100 rounded-2xl">
+                <div className="h-full px-3 overflow-y-auto">
+                    <ul className="space-y-2 font-medium">
+                        <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
+                            <FontAwesomeIcon icon={faFloppyDisk} />
+                            <button
+                                className="pl-2 text-xl"
+                                type="submit" onClick={() => handleSubmit()}>
+                                Save Entry
+                            </button>
+                        </li>
+                        <li className="hover:bg-gray-200 rounded-xl text-xl p-4 border-b-2">
+                            <FontAwesomeIcon icon={faCircleLeft} />
+                            <button
+                                className="pl-2"
+                                onClick={() => handleSubmit()}>
+                                Return to Entries
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
     )
 }
 export default EditorSidebar;

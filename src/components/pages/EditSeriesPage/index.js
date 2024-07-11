@@ -5,6 +5,7 @@ import Entry from "../../reusable/Entry";
 import SeriesApi from "../../../api/SeriesApi";
 import PaginationBar from "../../reusable/PaginationBar";
 import EditSeriesSidebar from "../../reusable/Sidebar/EditSeriesSidebar";
+import SidebarToggle from "../../reusable/SidebarToggle";
 
 function EditSeriesPage(){
     const [edited, setEdited] = useState(false);
@@ -13,6 +14,7 @@ function EditSeriesPage(){
         series: null
     })
     const [pageNum, setPageNum] = useState(0);
+    const [viewSidebar, setViewSidebar] = useState(false);
     const location = useLocation();
 
     useEffect(() =>{
@@ -41,8 +43,9 @@ function EditSeriesPage(){
     if(data.entries.length === 0){
         return (
             <div>
-                <EditSeriesSidebar setEdited={setEdited} setPageNum={setPageNum} pageNum={pageNum} data={data}/>
-                <div className="mx-4 md:pl-20 flex items-center md:mx-52">
+                <SidebarToggle view={viewSidebar} setView={setViewSidebar}/>
+                <EditSeriesSidebar setEdited={setEdited} setPageNum={setPageNum} pageNum={pageNum} data={data} view={viewSidebar}/>
+                <div className="mx-4 flex items-center md:pl-20 md:mr-52 md:ml-72">
                     <div className="flex flex-col my-3 space-y-0 mx-6 min-w-full text-center items-center">
                         <h3 className="my-8 font-sans text-3xl"> No Entries Yet </h3>
                     </div>
@@ -57,9 +60,11 @@ function EditSeriesPage(){
         });
         return(
             <div>
-                <EditSeriesSidebar setEdited={setEdited} setPageNum={setPageNum} pageNum={pageNum} data={data}/>
-                <div className="mx-4 md:pl-20 flex flex-col md:mx-52 flex flex-col my-3 space-y-0">
-                    { entryItems }
+                <SidebarToggle view={viewSidebar} setView={setViewSidebar}/>
+                <EditSeriesSidebar setEdited={setEdited} setPageNum={setPageNum} pageNum={pageNum} data={data} view={viewSidebar}/>
+                <div className="mx-4 md:pl-20 md:mr-52 md:ml-72 flex flex-col my-3 space-y-0">
+                    { data.entries.length === 0 ?  <h3 className="my-8 font-sans text-3xl"> No Entries Yet </h3>
+                        : entryItems }
                 </div>
                 <div className="flex flex-col w-screen items-center text-center">
                     <PaginationBar page = {pageNum} setPage = {setPageNum} searchTerm = ""

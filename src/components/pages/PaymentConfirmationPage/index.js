@@ -19,9 +19,9 @@ function PaymentConfirmationPage(){
     }
 
     return(
-        <div className="w-screen flex items-center justify-center">
+        <div className="flex items-center justify-center">
             <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
-                    md:flex-row md:space-y-0 md:mx-52 w-1/2 items-center justify-center">
+                    md:flex-row md:space-y-0 md:mx-52 md:w-1/2 items-center justify-center">
                 <div className="p-6 md:p-20">
                     <div className="font-sans text-3xl font-bold mb-8">
                         {message}

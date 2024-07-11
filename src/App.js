@@ -47,8 +47,8 @@ function App() {
                     <Route path = "/signup" element = {<SignUpPage/>}/>
                     <Route path = "/login" element = {<LoginPage setWriter={setUser}/>}/>
                     <Route path = "/writer/:penName" element = {<WriterDashboard/>}/>
-                    <Route path="/series/:seriesId" element = {<SeriesInfoPage/>}/>
-                    <Route path="/unsubscribe" element = {<UnsubscribePage/>}/>
+                    <Route path = "/series/:seriesId" element = {<SeriesInfoPage/>}/>
+                    <Route path = "/unsubscribe" element = {<UnsubscribePage/>}/>
                     <Route path = "/" element = {<HomePage/>}/>
                 </Routes>
             </Suspense>

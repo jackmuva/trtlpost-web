@@ -5,9 +5,10 @@ import EntryApi from "../../../../api/EntryApi";
 import SeriesApi from "../../../../api/SeriesApi";
 import {useLocation} from "react-router-dom";
 
-function EditSeriesSidebar({data, pageNum, setPageNum, setEdited}){
+function EditSeriesSidebar({data, pageNum, setPageNum, setEdited, view}){
     const location = useLocation();
     const [load, setLoad] = useState(false);
+
     const createEntry = () => {
         setLoad(true);
         let entry = {
@@ -32,7 +33,6 @@ function EditSeriesSidebar({data, pageNum, setPageNum, setEdited}){
 
     const incrementSeries = async() => {
         let updSeries = {...data.series, numEntries: data.series.numEntries + 1};
-        console.log(updSeries);
         const updateSeries = async(ser) => {
             await SeriesApi.putSeries(ser);
         }
@@ -40,25 +40,27 @@ function EditSeriesSidebar({data, pageNum, setPageNum, setEdited}){
     };
 
     let writerUrl = "/writer/" + sessionStorage.getItem("penName");
+    console.log(view);
 
     return(
-        <aside className="hidden md:flex mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0
-                                bg-slate-100 rounded-2xl">
-            <div className="h-full px-3 overflow-y-auto">
-                <ul className="space-y-2 font-medium">
-                    <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
-                        <FontAwesomeIcon icon={faPenToSquare}/>
-                        <button className="pl-2 text-xl" onClick={() => createEntry()} type="submit" disabled={load}>
-                            Create New Entry
-                        </button>
-                    </li>
-                    <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
-                        <FontAwesomeIcon icon={faCircleLeft}/>
-                        <a className="pl-2 text-xl" href={writerUrl}>Back to Series Page</a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+        <div className={`${view?'' : 'hidden md:flex'}`}>
+            <aside className="md:ml-4 ml-2 px-2 pt-10 h-screen w-1/2 md:w-64 z-40 fixed bg-slate-100 rounded-2xl">
+                <div className="h-full px-3 overflow-y-auto">
+                    <ul className="space-y-2 font-medium">
+                        <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
+                            <FontAwesomeIcon icon={faPenToSquare}/>
+                            <button className="pl-2 text-xl" onClick={() => createEntry()} type="submit" disabled={load}>
+                                Create New Entry
+                            </button>
+                        </li>
+                        <li className="hover:bg-gray-200 rounded-xl p-4 border-b-2">
+                            <FontAwesomeIcon icon={faCircleLeft}/>
+                            <a className="pl-2 text-xl" href={writerUrl}>Back to Series Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
     );
 }
 export default EditSeriesSidebar;

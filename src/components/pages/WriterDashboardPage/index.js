@@ -1,13 +1,12 @@
 import WriterApi from "../../../api/WriterApi";
 import React, {useEffect, useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
-import {useNavigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import SeriesPageWriterView from "./SeriesPageWriterView/SeriesPageWriterView";
 import SeriesPage from "../SeriesPage/series-page";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronRight, faCompass, faSquareCaretRight} from "@fortawesome/free-solid-svg-icons";
 import PaginationBar from "../../reusable/PaginationBar";
 import WriterDashboardSidebar from "../../reusable/Sidebar/WriterDashboardSidebar";
+import SidebarToggle from "../../reusable/SidebarToggle";
 
 
 function WriterDashboard (){
@@ -15,6 +14,7 @@ function WriterDashboard (){
     const [writer, setWriter] = useState([]);
     const [series, setSeries] = useState([]);
     const [pageNum, setPageNum] = useState(0);
+    const [viewSidebar, setViewSidebar] = useState(false);
 
     useEffect(() => {
         const fetchWriter = async() => {
@@ -44,18 +44,11 @@ function WriterDashboard (){
 
     }, [pageNum])
 
-    function toggleSidebar() {
-
-    }
-
     if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
         return (
             <div>
-                <button onClick={()=>toggleSidebar()}
-                    className="md:hidden my-0 p-0 border-2 border-slate-300 w-1/12">
-                    <FontAwesomeIcon className="size-8" icon={faChevronRight} />
-                </button>
-                <WriterDashboardSidebar writer={writer} penName={penName}/>
+                <SidebarToggle view={viewSidebar} setView={setViewSidebar}/>
+                <WriterDashboardSidebar writer={writer} penName={penName} view={viewSidebar}/>
                 <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
                 <div className="flex flex-col w-screen items-center text-center">
                     <PaginationBar page = {pageNum} setPage = {setPageNum} searchTerm = ""

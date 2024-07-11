@@ -1,17 +1,13 @@
-import {useNavigate, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import React, {useEffect, useRef, useState} from "react";
 import EditorJS from "@editorjs/editorjs";
-import EntryApi from "../../../api/EntryApi";
 import Header from "@editorjs/header";
 import ImageTool from "@editorjs/image";
 import LinkTool from "@editorjs/link";
 import SeriesApi from "../../../api/SeriesApi";
-import edjsHTML from "editorjs-html";
-import {toast} from "react-toastify";
 import EditorJsApi from "../../../api/EditorJsApi";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCircleLeft, faFloppyDisk} from "@fortawesome/free-solid-svg-icons";
 import EditorSidebar from "../../reusable/Sidebar/EditorSidebar";
+import SidebarToggle from "../../reusable/SidebarToggle";
 
 function EditEntryPage(){
     const location = useLocation();
@@ -19,6 +15,7 @@ function EditEntryPage(){
     const ejInstance = useRef();
     const [series, setSeries] = useState(null);
     const [entry, setEntry] = useState(null);
+    const [viewSidebar, setViewSidebar] = useState(false);
 
     const initEditor = () => {
         const editor = new EditorJS({
@@ -80,7 +77,8 @@ function EditEntryPage(){
 
     return (
         <div>
-            <EditorSidebar series={series} entry={entry} ejInstance={ejInstance} />
+            <SidebarToggle view={viewSidebar} setView={setViewSidebar}/>
+            <EditorSidebar series={series} entry={entry} ejInstance={ejInstance} view={viewSidebar} />
             <div className="mx-4 md:pl-20 flex items-center justify-center">
                 <div class="p-6 mb-6 flex-col md:w-1/2 shadow-2xl rounded-2xl">
                     <div id='editorjs'></div>
