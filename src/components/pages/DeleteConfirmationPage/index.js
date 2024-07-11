@@ -1,4 +1,4 @@
-import {Navigate, useLocation} from "react-router-dom";
+import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
 import EntryApi from "../../../api/EntryApi";
@@ -8,6 +8,7 @@ const DeleteConfirmationPage = () => {
     const location = useLocation();
     const type = location.state.type;
     const obj = location.state.obj;
+    const navigate = useNavigate();
 
     const decrementSeries = async() => {
         getSeriesById(obj.entry.seriesId).then((data) => {
@@ -42,14 +43,15 @@ const DeleteConfirmationPage = () => {
         }
     };
 
+    const redirectToSeries = () => {
+        navigate("/editSeries", {state: {series:{ series: {seriesId: obj.entry.seriesId, email: obj.entry.email}}}});
+    }
+
     if(errorMessage === "Deleted Successfully" && type === "series"){
         let redUrl = '/writer/' + obj?.series.penName;
         return <Navigate to = {redUrl} />
     } else if (errorMessage === "Deleted Successfully" && type === "entry"){
-        return <Navigate to={{
-            pathname: "/editSeries",
-            state: {series:{ series: {seriesId: obj.entry.seriesId, email: obj.entry.email} }}
-        }} />
+        redirectToSeries();
     } else if(errorMessage === "Deleted Successfully" && type === "writer"){
         return <Navigate to='/'/>
     }

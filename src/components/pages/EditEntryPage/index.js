@@ -11,9 +11,9 @@ import {toast} from "react-toastify";
 import EditorJsApi from "../../../api/EditorJsApi";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleLeft, faFloppyDisk} from "@fortawesome/free-solid-svg-icons";
+import EditorSidebar from "../../reusable/Sidebar/EditorSidebar";
 
 function EditEntryPage(){
-    const navigate = useNavigate();
     const location = useLocation();
     let DEFAULT_INITIAL_DATA;
     const ejInstance = useRef();
@@ -58,10 +58,6 @@ function EditEntryPage(){
         });
     };
 
-    function htmlLinkParser(block){
-        return `<a href = "${block.data.link}"> ${block.data.link} </a>`;
-    }
-
     useEffect(() => {
         setEntry(location.state.entry.entry);
         DEFAULT_INITIAL_DATA = JSON.parse(location.state.entry.entry.entryJson);
@@ -82,48 +78,11 @@ function EditEntryPage(){
         };
     }, []);
 
-    const handleSubmit = async () => {
-        let content = await ejInstance.current.saver.save();
-        entry.entryJson = JSON.stringify(content);
-
-        const edjsParser = edjsHTML({linkTool: htmlLinkParser});
-        ejInstance.current?.save().then((outputData) => {
-            const html = edjsParser.parse(outputData);
-            entry.entryHtml = JSON.stringify(html);
-            EntryApi.updateEntry(entry).then(() => {
-                toast.success("Entry Saved");
-                navigate('/editSeries', {state: {series: {series}}});
-            });
-        }).catch(() => {
-            toast.error('Saving failed');
-        });
-    };
-
     return (
         <div>
-            <aside
-                className="mt-10 fixed top-20 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0 bg-gradient-to-t from-gray-200">
-                <div className="h-full px-3 overflow-y-auto">
-                    <ul className="space-y-2 font-medium">
-                        <li className="hover:bg-gray-200 rounded-xl p-4">
-                            <FontAwesomeIcon icon={faFloppyDisk} />
-                            <button
-                                className="pl-2 text-xl"
-                                type="submit" onClick={() => handleSubmit()}>
-                                Save Entry
-                            </button>
-                        </li>
-                        <li className="hover:bg-gray-200 rounded-xl pl-2 text-xl p-4">
-                            <FontAwesomeIcon icon={faCircleLeft} />
-                            <button onClick={() => handleSubmit()}>
-                                Return to Entries
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-            <div className="pl-20 flex items-center justify-center">
-                <div class="p-6 mb-6 flex-col w-1/2 shadow-2xl rounded-2xl">
+            <EditorSidebar series={series} entry={entry} ejInstance={ejInstance} />
+            <div className="mx-4 md:pl-20 flex items-center justify-center">
+                <div class="p-6 mb-6 flex-col md:w-1/2 shadow-2xl rounded-2xl">
                     <div id='editorjs'></div>
                 </div>
             </div>

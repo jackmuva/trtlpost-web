@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import HorizontalNavbar from "../HorizontalNavbar";
-import VerticalNavbar from "../VerticalNavbar";
+import HorizontalNavbar from "../Navbar/HorizontalNavbar";
+import VerticalNavbar from "../Navbar/VerticalNavbar";
 
 function Header() {
     const [openMenu, setOpenMenu] = useState(false);

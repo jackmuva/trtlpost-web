@@ -76,8 +76,8 @@ function SignUpPage () {
     else{
         return(
             <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
-                md:flex-row md:space-y-0 md:mx-52">
-                <div className="p-6 md:p-20">
+                md:flex-row md:space-y-0 md:mx-72">
+                <div className="p-6 md:p-20 md:basis-1/2">
                     <h2 className="font-sans test-4xl font-bold mb-2">Sign Up</h2>
                     <p className="mb-2 max-2-sm font-sans font-light text-gray-600">
                         Sign up to publish email series and share with other readers
@@ -97,7 +97,7 @@ function SignUpPage () {
                     </div>
                 </div>
                 <div>
-                    <img src="images/vanc-lake.png" className="h-full hidden md:block rounded-r-2xl" alt="Vancouver lake"/>
+                    <img src="images/vanc-lake.png" className="h-full hidden md:block rounded-r-2xl basis-1/2" alt="Vancouver lake"/>
                 </div>
             </div>);
     }

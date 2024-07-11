@@ -5,13 +5,13 @@ import {useNavigate, useParams} from 'react-router-dom';
 import SeriesPageWriterView from "./SeriesPageWriterView/SeriesPageWriterView";
 import SeriesPage from "../SeriesPage/series-page";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPenNib} from "@fortawesome/free-solid-svg-icons";
+import {faChevronRight, faCompass, faSquareCaretRight} from "@fortawesome/free-solid-svg-icons";
 import PaginationBar from "../../reusable/PaginationBar";
+import WriterDashboardSidebar from "../../reusable/Sidebar/WriterDashboardSidebar";
 
 
 function WriterDashboard (){
     const { penName } = useParams();
-    const navigate = useNavigate();
     const [writer, setWriter] = useState([]);
     const [series, setSeries] = useState([]);
     const [pageNum, setPageNum] = useState(0);
@@ -44,27 +44,18 @@ function WriterDashboard (){
 
     }, [pageNum])
 
-    function redirectToNewSeries() {
-        navigate(`/writer/${penName}/newSeries`, {state: {type: 'create', writer: {writer}}});
+    function toggleSidebar() {
+
     }
 
     if(sessionStorage.getItem("jwt") !== null && sessionStorage.getItem("penName") === penName) {
         return (
             <div>
-                <aside class="mt-10 ml-2 mb-4 fixed top-20 left-0 z-40 w-64 h-5/6 pt-10 transition-transform -translate-x-full sm:translate-x-0
-                                bg-slate-100 rounded-2xl">
-                    <div className="h-full px-3 overflow-y-auto">
-                        <ul className="space-y-2 font-medium">
-                            <li class = "hover:bg-gray-300 rounded-xl p-4 border-b-2">
-                                <FontAwesomeIcon icon={faPenNib} />
-                                <button onClick = {() => redirectToNewSeries()}
-                                    class="ms-3 text-xl">
-                                    Create New Series
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
+                <button onClick={()=>toggleSidebar()}
+                    className="md:hidden my-0 p-0 border-2 border-slate-300 w-1/12">
+                    <FontAwesomeIcon className="size-8" icon={faChevronRight} />
+                </button>
+                <WriterDashboardSidebar writer={writer} penName={penName}/>
                 <SeriesPageWriterView allSeries={series}></SeriesPageWriterView>
                 <div className="flex flex-col w-screen items-center text-center">
                     <PaginationBar page = {pageNum} setPage = {setPageNum} searchTerm = ""
