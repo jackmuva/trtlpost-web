@@ -22,12 +22,17 @@ function EditorSidebar({ejInstance, entry, series, view}){
             entry.entryHtml = JSON.stringify(html);
             EntryApi.updateEntry(entry).then(() => {
                 toast.success("Entry Saved");
-                navigate('/editSeries', {state: {series: {series}}});
             });
         }).catch(() => {
             toast.error('Saving failed');
         });
     };
+
+    const redirectToSeries = async() => {
+        handleSubmit.then(() => {
+            navigate('/editSeries', {state: {series: {series}}});
+        });
+    }
 
     return(
         <div className={`${view?'' : 'hidden md:flex'}`}>
@@ -46,7 +51,7 @@ function EditorSidebar({ejInstance, entry, series, view}){
                             <FontAwesomeIcon icon={faCircleLeft} />
                             <button
                                 className="pl-2"
-                                onClick={() => handleSubmit()}>
+                                onClick={() => redirectToSeries()}>
                                 Return to Entries
                             </button>
                         </li>
