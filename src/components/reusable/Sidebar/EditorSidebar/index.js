@@ -29,7 +29,7 @@ function EditorSidebar({ejInstance, entry, series, view}){
     };
 
     const redirectToSeries = async() => {
-        handleSubmit.then(() => {
+        handleSubmit().then(() => {
             navigate('/editSeries', {state: {series: {series}}});
         });
     }

@@ -16,7 +16,7 @@ function PaymentPage(){
                 <div className="p-6 md:p-20">
                     <h2 className="font-sans font-bold mb-2">$10 - Reader Cap Removal</h2>
                     <h3 className="font-sans mb-2">What is a reader cap removal?</h3>
-                    <p>
+                    <p className="mb-2 max-2-sm font-sans font-light text-gray-700">
                         Removing the reader cap means there is no limit on how many people are reading
                         your series at the same time. <br/><br/>
                         This purchase is single purchase (no subscriptions here) per series for the lifetime of this series.
