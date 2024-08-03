@@ -63,7 +63,8 @@ function NewSeriesPage() {
             email: location.state.writer.writer.email,
             published: false,
             numAllTimeReaders: 0,
-            numCurrentReaders: 0
+            numCurrentReaders: 0,
+           maxCurrentReaders: 10
         }
 
         ser.title = document.getElementById("title").value;
@@ -80,7 +81,6 @@ function NewSeriesPage() {
     }
 
     const handleSubmitForEdit = () => {
-        console.log(series);
         let ser = {
             seriesId: series.seriesId,
             datetime: getDateTime(),
@@ -93,7 +93,8 @@ function NewSeriesPage() {
             email: series.email,
             published: series.published,
             numAllTimeReaders: series.numAllTimeReaders,
-            numCurrentReaders: series.numCurrentReaders
+            numCurrentReaders: series.numCurrentReaders,
+            maxCurrentReaders: series.maxCurrentReaders
         }
 
         ser.title = document.getElementById("title").value;

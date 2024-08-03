@@ -12,7 +12,7 @@ function EditorSidebar({ejInstance, entry, series, view}){
     function htmlLinkParser(block){
         return `<a href = "${block.data.link}"> ${block.data.link} </a>`;
     }
-    const handleSubmit = async () => {
+    const handleSubmit = async(callbackFunction) => {
         let content = await ejInstance.current.saver.save();
         entry.entryJson = JSON.stringify(content);
 
@@ -22,6 +22,7 @@ function EditorSidebar({ejInstance, entry, series, view}){
             entry.entryHtml = JSON.stringify(html);
             EntryApi.updateEntry(entry).then(() => {
                 toast.success("Entry Saved");
+                callbackFunction();
             });
         }).catch(() => {
             toast.error('Saving failed');
@@ -29,9 +30,10 @@ function EditorSidebar({ejInstance, entry, series, view}){
     };
 
     const redirectToSeries = async() => {
-        handleSubmit().then(() => {
+        const redirect = () => {
             navigate('/editSeries', {state: {series: {series}}});
-        });
+        }
+        await handleSubmit(redirect);
     }
 
     return(
@@ -43,7 +45,7 @@ function EditorSidebar({ejInstance, entry, series, view}){
                             <FontAwesomeIcon icon={faFloppyDisk} />
                             <button
                                 className="pl-2 text-xl"
-                                type="submit" onClick={() => handleSubmit()}>
+                                type="submit" onClick={() => handleSubmit(() => {})}>
                                 Save Entry
                             </button>
                         </li>
