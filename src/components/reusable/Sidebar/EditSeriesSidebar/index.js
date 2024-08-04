@@ -40,8 +40,6 @@ function EditSeriesSidebar({data, pageNum, setPageNum, setEdited, view}){
     };
 
     let writerUrl = "/writer/" + sessionStorage.getItem("penName");
-    console.log(view);
-
     return(
         <div className={`${view?'' : 'hidden md:flex'}`}>
             <aside className="md:ml-4 ml-2 px-2 pt-10 h-screen w-1/2 md:w-64 z-40 fixed bg-slate-100 rounded-2xl">
