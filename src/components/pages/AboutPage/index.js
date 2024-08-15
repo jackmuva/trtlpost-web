@@ -46,7 +46,7 @@ const AboutPage = () => {
                         <br/><br/>
                         Email Series are a way for them to write a newsletter that readers can receive with a clear beginning
                         and end. This is also great for readers because they can receive a series in its entirety even if they
-                        subscribed months or years before the series' inception.
+                        subscribed months or years after the series' inception.
                     </p>
                     <h3 className="font-sans text-3xl font-bold mb-0 mt-4 text-blue-600">
                         A slower more intentional reading experience
